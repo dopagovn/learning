@@ -1,0 +1,59 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+    
+}
+div#main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    background-color: black;
+}
+svg path:nth-child(1){
+    stroke-dasharray: 459.017822265625px;
+    stroke-dashoffset: 459.017822265625px;
+    animation: appear ease 2s forwards;
+}
+svg path:nth-child(2){
+    stroke-dasharray: 467.4403381347656px;
+    stroke-dashoffset: 467.4403381347656px;
+    animation: appear ease 2s forwards .3s;
+}
+svg path:nth-child(3){
+    stroke-dasharray: 469.6530456542969px;
+    stroke-dashoffset: 469.6530456542969px;
+    animation: appear ease 2s forwards .6s;
+}
+svg path:nth-child(4){
+    stroke-dasharray: 222.92977905273438px;
+    stroke-dashoffset: 222.92977905273438px;
+    animation: appear ease 2s forwards .9s;
+}
+svg path:nth-child(5){
+    stroke-dasharray: 501.270263671875px;
+    stroke-dashoffset: 501.270263671875px;
+    animation: appear ease 2s forwards 1.2s;
+}
+svg path:nth-child(6){
+    stroke-dasharray: 525.2803344726562px;
+    stroke-dashoffset: 525.2803344726562px;
+    animation: appear ease 2s forwards 1.5s;
+}
+svg{
+    animation: fill 1s ease forwards 3.5s;
+}
+@keyframes appear {
+    to{
+        stroke-dashoffset: 0;
+    }
+}
+@keyframes fill {
+    from{
+        fill: transparent;
+    }
+    to{
+        fill: white;
+    }
+}
