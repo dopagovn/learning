@@ -24,5 +24,12 @@
 
 > git merge master
 
+#### 2. Sử dụng top và footer để thêm vào trang web của mình
+    <?php
+        require './backend/web_config.php';
+        load_top();
+        load_footer();
+    ?>
+
 
 **_TẠM THỜI TỚI ĐÂY, ĐỂ CHIỀU TỐI HỌP TUI THÊM VÔ TIẾP_**
