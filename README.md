@@ -1,5 +1,8 @@
 # Dự án Webchat
 ***
+## Thư viện đang dùng:
+[Boostrap](https://getbootstrap.com/)
+
 
 ####  1. Hướng dẫn clone dự án về máy: 
 
@@ -23,6 +26,8 @@
 4. Gộp code từ branch **"master"** về branch của mình sau khi đã Update code từ bước 2 bằng cách:
 
 > git merge master
+
+
 
 #### 2. Sử dụng top và footer để thêm vào trang web của mình
     <?php
