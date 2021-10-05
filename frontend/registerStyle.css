@@ -1,0 +1,88 @@
+*, p{
+    margin: 0px;
+    padding: 0px;
+}
+:root{
+    --gray: rgb(201, 201, 201);
+}
+.footer{
+    position: relative;
+}
+#login-title{
+    transform: translateY(0);
+    font-size: 24px !important;
+    width: 100%;
+    text-align: unset;
+    margin-bottom: 20px;
+}
+.container{
+    width: 500px;
+    height: 750px;
+    padding: 50px 45px;
+    margin: 50px auto;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px var(--gray);
+}
+.register .register__row{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+.register .register__row div{
+    width: 195px;
+}
+.register .register__row--1 div{
+    width: 100% !important;
+}
+.register .register__row--1 div .textbox{
+    width: 100%;
+}
+.register .register__row div .title{
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: rgb(163, 163, 163);
+}
+.register .register__row div .textbox{
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 7px 5px;
+    background-color: rgba(0, 0, 0, .04);
+    border-radius: 5px;
+    color: rgb(88, 88, 88);  
+}
+.register .register__row .birthday{
+    display: flex;
+}
+.register .register__row .birthday > input{
+    width: 165px;
+    padding-right: 0px;
+}
+.register .register__row .birthday > .birthday__calendar{
+    width: 30px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, .04);
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    cursor: pointer;
+}
+.register .register__row .birthday > .birthday__calendar:hover{
+    opacity: .8;
+    transition: .3s;
+}
+.register .register__row .gender{
+    display: flex;
+    align-items: center;
+    height: 38px;
+}
+.register .register__row .gender > p:nth-child(2){
+    flex: 1;
+    margin-left: 25px;
+}
+.register .register__row .gender input{
+    cursor: pointer;
+}
