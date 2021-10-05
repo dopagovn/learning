@@ -2,10 +2,10 @@
 <?php
     function load_top()
     {
-        require('top.html');
+        require('top.php');
     }
     function load_footer()
     {
-        require('footer.html');
+        require('footer.php');
     }
 ?>

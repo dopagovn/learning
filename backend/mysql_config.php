@@ -1,6 +1,4 @@
 <?php
-        $username = $_POST['username'];
-        $password = $_POST['password'];
 
         //Cấu hình database:
         $hostname = ''; // Thêm hostname
@@ -11,8 +9,8 @@
 
         //Kết nối CSDL
         $conn = mysqli_connect($hostname, $user , $pass , $db);
-
-
+        //Thiết kế bảng mã kết nối
+        mysqli_connect($conn, "SET NAMES 'utf8'");
 
         
 ?>
