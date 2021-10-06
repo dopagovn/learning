@@ -15,7 +15,6 @@
     <!--Add Boostrap CSS-->
     <link href="./frontend/bootstrap/css/bootstrap.min.css" rel="stylesheet">    
     <link href="./frontend/style.css" rel="stylesheet">    
-
 </head>
 <body>
         
