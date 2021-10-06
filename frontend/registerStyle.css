@@ -4,6 +4,7 @@
 }
 :root{
     --gray: rgb(201, 201, 201);
+    --blue: #0d6efd;
 }
 .footer{
     position: relative;
@@ -17,8 +18,8 @@
 }
 .container{
     width: 500px;
-    height: 750px;
     padding: 50px 45px;
+    padding-bottom: 30px;
     margin: 50px auto;
     border: none;
     border-radius: 10px;
@@ -85,4 +86,29 @@
 }
 .register .register__row .gender input{
     cursor: pointer;
+}
+.register .register__row--1 .cb-policy{
+    cursor: pointer;
+    transform: translateY(1px);
+}
+.register .register__row--1 span > a{
+    cursor: pointer;  
+    color: var(--blue); 
+}
+.register .register__row--1 span > a:hover{
+    color: var(--blue);
+    opacity: .8;
+    transition: .3s;
+}
+.register .register__row--1 .agree{
+    outline: none;
+    border: none;
+    color: white;
+    background-color: var(--blue);
+    padding: 5px 20px;
+    border-radius: 3px;
+    margin-top: 5px;     
+}
+.register .register__row--1 .agree:hover{
+    filter: brightness(105%);
 }
