@@ -62,4 +62,9 @@ body{
 
 .login-form .btnLogin {
     border-radius: 50px;
+
+}
+
+.login-form .nav-link {
+    color: red;
 }
