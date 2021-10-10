@@ -20,9 +20,9 @@
             <form method="$_POST" action="./chat.php">
                 <input id="username" class="form-control" type="text" placeholder="Nhập tài khoản"><br>
                 <input id="password" class="form-control" type="password" placeholder="Nhập mật khẩu"><br>
-                <input class="btnLogin btn btn-primary" type="button" name="" value="Đăng Nhập"><br>
-                <a href="./register.php" class="reg-link nav-link">Chưa có tài khoản? Đăng ký ngay</a>
+                <input class="btnLogin btn btn-outline-primary" type="button" name="" value="Đăng Nhập"><br>
             </form>
         </div>
+            <a href="./register.php" class="reg-link nav-link">Chưa có tài khoản? Đăng ký ngay</a>
 </div>
    

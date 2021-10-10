@@ -65,6 +65,7 @@ body{
 
 }
 
-.login-form .nav-link {
+.reg-link {
     color: red;
+    padding-left: 3px;
 }
