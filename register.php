@@ -22,11 +22,39 @@
                 <p class="title">Ngày sinh</p>
                 <div class="birthday">
                     <input class="textbox" type="text" value="1/1/1900">
-                    <p class="birthday__calendar"><i class="far fa-calendar"></i></p>                       
-                </div>
-                <div class="date-picker">
-
-                </div>
+                    <p class="birthday__calendar"><i class="far fa-calendar"></i></p> 
+                    <div class="date-picker" style="display: none;">
+                        <div class="date-picker__choice">
+                            <p class="left-arrow">
+                                <i class="fas fa-chevron-left"></i>
+                            </p>
+                            <div class="month-year">
+                                <p>Tháng <span>1</span></p>,
+                                <p style="margin-left: 5px;">1900</p>
+                            </div>
+                            <p class="right-arrow">
+                                <i class="fas fa-chevron-left" style="transform: rotateZ(180deg);"></i>
+                            </p>
+                        </div>
+                        <div class="date-picker__main">
+                            <div class="days">
+                                <p>Sun</p>
+                                <p>Mon</p>
+                                <p>Tue</p>
+                                <p>Wed</p>
+                                <p>Thu</p>
+                                <p>Fri</p>
+                                <p>Sat</p>
+                            </div>
+                            <div class="dates">                               
+                            </div>
+                            <div class="months">                              
+                            </div>
+                            <div class="years">                               
+                            </div>
+                        </div>
+                    </div>                      
+                </div>              
             </div>
             <div>
                 <p class="title">Giới tính</p>
@@ -74,6 +102,7 @@
                 <button type="submit" class="agree">Đăng ký</button>
             </div>
         </div>
-    </form>   
+    </form>
+    <script src="./frontend/registerScript.js"></script>   
 </div>
 <?php load_footer(); ?>
