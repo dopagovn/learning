@@ -5,7 +5,7 @@
     initDataUsers();
     echo "
         <script>
-            let check = alert('Khởi tạo DATABASE thành công');
+            var check = alert('Khởi tạo DATABASE thành công');
             document.location = '/final';
         </script>
     ";
