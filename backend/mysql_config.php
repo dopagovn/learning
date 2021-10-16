@@ -31,27 +31,6 @@
         $result = mysqli_query($connect ,'SELECT count(*) as Amount FROM users');
         $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-
-
-
-        
-        $sql = "CREATE TABLE users(
-                id int PRIMARY KEY AUTO_INCREMENT,
-            FirstName VARCHAR(100) charset utf8,
-            LastName VARCHAR(100) charset utf8,
-            BirthDay date,
-            Gender int, -- 1 nam 0 nữ
-            Email varchar(100),
-            Password varchar(100),
-            Phone varchar(13),
-            TimeCreated DateTime
-        )";
-
-
-
-        
-
-
         if($data[0]['Amount'] > 0){
             return;
         }
@@ -67,5 +46,4 @@
         $result = mysqli_multi_query($connect, $query);
         mysqli_close($connect);
     }
-
 ?>
