@@ -1,0 +1,30 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    color: black;
+}
+#khoi1 {
+    text-align: left;
+    border: 2px solid black;
+    width: 50px;
+    height: 80px;
+    float: left;
+    background-color: blue;
+
+
+}
+#khoi2{
+    
+    margin-top: 0px ;
+    text-align: center;
+    background-color: blanchedalmond;
+    float: left;
+}
+#khoi3{
+    margin-top: 0px;
+    text-align: right;
+    background-color: brown;
+    float: right;
+
+}

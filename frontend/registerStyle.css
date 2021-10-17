@@ -1,0 +1,207 @@
+*, p{
+    margin: 0px;
+    padding: 0px;
+}
+:root{
+    --gray: rgb(201, 201, 201);
+    --blue: #0d6efd;
+}
+.footer{
+    position: relative;
+}
+#login-title{
+    transform: translateY(0);
+    font-size: 24px !important;
+    width: 100%;
+    text-align: unset;
+    margin-bottom: 20px;
+}
+.container{
+    width: 520px;
+    padding: 50px 45px;
+    padding-bottom: 30px;
+    margin: 50px auto;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px var(--gray);
+}
+.register .register__row{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+.register .register__row div{
+    width: 205px;
+}
+.register .register__row--1 div{
+    width: 100% !important;
+}
+.register .register__row--1 div .textbox{
+    width: 100%;
+}
+.register .register__row div .title{
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: rgb(163, 163, 163);
+}
+.register .register__row > div .textbox{
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 7px 5px;
+    background-color: rgba(0, 0, 0, .04);
+    border-radius: 5px;
+    color: rgb(88, 88, 88); 
+    width: 100%; 
+}
+.register .register__row .birthday{
+    display: flex;
+    position: relative;
+}
+.register .register__row .birthday > input{
+    width: 175px;
+    padding-right: 0px;
+}
+.register .register__row .birthday > .birthday__calendar{
+    width: 30px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, .04);
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    cursor: pointer;
+}
+.register .register__row .birthday > .birthday__calendar:hover{
+    opacity: .8;
+    transition: .3s;
+}
+.register .register__row .gender{
+    display: flex;
+    align-items: center;
+    height: 38px;
+}
+.register .register__row .gender > p:nth-child(2){
+    flex: 1;
+    margin-left: 25px;
+}
+.register .register__row .gender input{
+    cursor: pointer;
+}
+.register .register__row--1 .cb-policy{
+    cursor: pointer;
+    transform: translateY(1px);
+}
+.register .register__row--1 span > a{
+    cursor: pointer;  
+    color: var(--blue); 
+}
+.register .register__row--1 span > a:hover{
+    color: var(--blue);
+    opacity: .8;
+    transition: .3s;
+}
+.register .register__row--1 .agree{
+    outline: none;
+    border: none;
+    color: white;
+    background-color: var(--blue);
+    padding: 5px 20px;
+    border-radius: 3px;
+    margin-top: 5px;     
+}
+.register .register__row--1 .agree:hover{
+    filter: brightness(105%);
+}
+.register__row .birthday .date-picker{
+    position: absolute;
+    top: 38px;
+    left: 0;
+    user-select: none;
+}
+.register__row .birthday .date-picker .date-picker__choice{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    color: white;
+    background-color: var(--blue);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px; 
+}
+.register__row .birthday .date-picker .date-picker__choice p{
+    cursor: pointer;
+}
+.register__row .birthday .date-picker .date-picker__choice p:hover{
+    filter: brightness(115%);
+}
+.register__row .birthday .date-picker .date-picker__choice .month-year{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.register__row .birthday .date-picker .date-picker__main{
+    background-color: white;
+    padding: 5px 0px;
+    border: 1px solid var(--blue);
+}
+.register__row .birthday .date-picker .date-picker__main > .days{
+    display: none;
+    font-size: 10px;
+    justify-content: space-evenly;
+    color: rgb(105, 105, 105);
+}
+.register__row .birthday .date-picker .date-picker__main > .days > p{
+    width: 20px;
+    text-align: center;
+}
+.register__row .birthday .date-picker .date-picker__main > .dates{
+    display: none;
+}
+.register__row .birthday .date-picker .date-picker__main > .dates > .dates__row{
+    display: flex;
+    font-size: 11px;
+    justify-content: space-evenly;
+    color: black;
+}
+.register__row .birthday .date-picker .date-picker__main > .dates > .dates__row > p{
+    width: 20px;
+    cursor: pointer;
+    text-align: center;
+}
+.register__row .birthday .date-picker .date-picker__main > .dates > .dates__row > p:hover{
+    background-color: var(--blue);
+    color: white;
+}
+.register__row .birthday .date-picker .date-picker__main > .months{
+    display: none;
+    font-size: 10.5px;
+    justify-content: space-evenly;
+    color: black;
+    flex-wrap: wrap;
+}
+.register__row .birthday .date-picker .date-picker__main > .months > p{
+    width: 48px;
+    cursor: pointer;
+    padding: 4px 1px;
+    text-align: center;
+}
+.register__row .birthday .date-picker .date-picker__main > .months > p:hover{
+    background-color: var(--blue);
+    color: white;
+}
+.register__row .birthday .date-picker .date-picker__main > .years{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 3px;
+}
+.register__row .birthday .date-picker .date-picker__main > .years > p{
+    cursor: pointer;
+    text-align: center;
+    padding: 5px 4px;
+}
+.register__row .birthday .date-picker .date-picker__main > .years > p:hover{
+    background-color: var(--blue);
+    color: white;
+}
