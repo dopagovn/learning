@@ -1,0 +1,71 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+#login-title {
+    font-size: 50px;
+    top: 50%;
+    transform: translateY(200%);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background: linear-gradient(
+        83.84deg, #0088FF -6.87%, #A033FF 26.54%, #FF5C87 58.58%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+#about {
+    font-size: 57px;
+    top: 50%;
+    transform: translateY(50%);
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(
+        83.84deg, #0088FF -6.87%, #A033FF 26.54%, #FF5C87 58.58%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+.footer {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height: 10px;
+}
+
+.login-form{
+    padding-top: 150px;
+}
+
+.login-form #username{
+    padding-right: 40px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, .04);
+    border: none;
+    font-size: 20px;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+.login-form #password{
+    padding-right: 40px;
+    border: none;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, .04);
+    font-size: 20px;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+
+.login-form .btnLogin {
+    border-radius: 50px;
+
+}
+
+.reg-link {
+    color: red;
+    padding-left: 3px;
+}
