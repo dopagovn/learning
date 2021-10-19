@@ -31,7 +31,9 @@
         $result = mysqli_query($connect ,'SELECT count(*) as Amount FROM users');
         $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
+
         
+
 
         if($data[0]['Amount'] > 0){
             return;
