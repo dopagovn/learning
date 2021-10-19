@@ -1,0 +1,95 @@
+.row{
+    height: 680px;
+}
+
+.container-fluid h1{
+    text-align: center;
+    font-size: large;
+    color:rebeccapurple;
+}
+
+.block-left{
+    border-radius: 5px;
+    border-width: 3px;
+
+}
+
+
+.block-center{
+    border-width: 3px;
+    border-bottom: none;
+    box-shadow: 0 0 10px 0px grey;
+    margin-left: 5px;
+}
+
+.block-right{
+    border-radius: 5px;
+    border-width: 3px;
+    margin-left: 5px;
+}
+
+#search[type=text] {
+    border-radius: 15px;
+    width: 100%;
+    border-width: 1px;
+    padding: 7px;
+    border-style: none;
+    font-size: 15px;
+    background-color: #f1f1f1;
+    outline: none;
+    padding-left: 30px;
+}
+
+.input-icons i{
+    position: absolute;
+    padding-left: 4px;
+    padding-top: 6px;
+    color: grey;
+}
+
+.input-icons {
+    margin-bottom: 10px;
+}
+
+/* User list CSS code */
+
+.user-list{
+    margin-left: -5px;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+
+.user-list a{
+    text-decoration: none;
+    font-size: 10px;
+    color: black;
+}
+
+.user-list a .content{
+    display: flex;
+    border-bottom: 1px solid #e6e6e6;
+    padding-top: 10px;
+}
+
+.user-list a .content img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.user-list a .content:focus-visible{
+    background-color: yellow;
+}
+
+.user-list .details{
+    margin-left: 15px;
+    margin-top: 5px;
+}
+.user-list .details span{
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
