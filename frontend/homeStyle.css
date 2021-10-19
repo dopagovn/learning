@@ -1,30 +1,62 @@
 body{
-    margin: 0;
-    padding: 0;
-    background-color: white;
-    color: black;
+     background-color: rgb(243, 240, 240);
 }
-#khoi1 {
-    text-align: left;
-    border: 2px solid black;
-    width: 50px;
-    height: 80px;
-    float: left;
-    background-color: blue;
-
-
-}
-#khoi2{
+.khoi1{
     
-    margin-top: 0px ;
-    text-align: center;
-    background-color: blanchedalmond;
-    float: left;
-}
-#khoi3{
-    margin-top: 0px;
-    text-align: right;
-    background-color: brown;
-    float: right;
 
+    background-repeat: repeat;
+    background-color: #ff0080;
+    float: left;
+    border-style: inset  ;
+    height: 640px;
+    width: 25%;
+    border-radius: 10px 50px 50px 15px; 
+    text-shadow: 2px 2px 4px #2f0ddb;
+    box-shadow: 10px 10px 5px grey;
+}
+
+
+a {
+    color: rgb(105, 108, 255);
+  }
+
+ul.a {
+    list-style-type: circle;
+  }
+  
+.khoi2{
+    background-color: #ffe6f2;
+    float: left;
+    height: 640px;
+    width: 50%;
+    border-style:inset ;
+    border-radius: 15px ;
+    box-shadow: 10px 10px 5px grey;
+}
+.khoi3{
+    background-color: rgb(104, 134, 104);
+    float: left;
+    border-style:inset ;
+    height: 640px;
+    width: 25%;
+    padding-left: 0px ;
+    border-radius: 10px 50px 50px 10px;
+    box-shadow: 10px 10px 5px grey;
+}
+#select{
+  width: 85%;
+  border-radius: 10px 5px 5px 10px;
+}
+#conver{
+  width: 70%;
+  border-radius: 10px 10px 10px 10px;
+
+}
+#buttom{
+  width: 90%;
+  border-radius: 10px 10px 10px 10px;
+}
+#text{
+  width:90% ;
+  border-radius: 10px 10px 10px 10px;
 }
