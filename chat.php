@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
         require './backend/web_config.php';
         load_top();
@@ -62,3 +63,5 @@
        </form>   
 </div>     
 <?php load_footer(); ?> <!-- Nếu Load top với footer rồi thì không cần thẻ <html> m chỉ cần design mấy cái này thôi hay thẻ <body> ữa  làm tiếp cái này đi nha tiếp tục CSS với học thêm bootsrap nữa-->
+=======
+>>>>>>> quoc
