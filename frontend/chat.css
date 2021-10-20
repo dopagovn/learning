@@ -1,6 +1,8 @@
-.row{
-    height: 680px;
+html, body{
+    height: 100%;
+    margin: 0;
 }
+
 
 .container-fluid h1{
     text-align: center;
@@ -11,7 +13,6 @@
 .block-left{
     border-radius: 5px;
     border-width: 3px;
-
 }
 
 
@@ -20,6 +21,7 @@
     border-bottom: none;
     box-shadow: 0 0 10px 0px grey;
     margin-left: 5px;
+    height: 100vh;
 }
 
 .block-right{
