@@ -1,6 +1,4 @@
 <?php
-<<<<<<< HEAD
-=======
     if(isset($_POST['register'])){
         // echo $_POST['firstName'] . '<br/>';
         // echo $_POST['lastName'] . '<br/>';
@@ -85,7 +83,6 @@
     }
 ?>
 <?php 
->>>>>>> vinh
     require('./backend/web_config.php');
     load_top();
 ?>
@@ -118,11 +115,7 @@
             <div>
                 <p class="title">Ngày sinh</p>
                 <div class="birthday">
-<<<<<<< HEAD
-                    <input class="textbox" type="text" value="1/1/2000">
-=======
                     <input class="textbox" type="text" value="<?php echo (isset($_POST['birthDay'])) ? $_POST['birthDay'] : '1/1/1900';?>" name="birthDay">
->>>>>>> vinh
                     <p class="birthday__calendar"><i class="far fa-calendar"></i></p> 
                     <div class="date-picker" style="display: none;">
                         <div class="date-picker__choice">
@@ -131,7 +124,7 @@
                             </p>
                             <div class="month-year">
                                 <p>Tháng <span>1</span></p>,
-                                <p style="margin-left: 5px;">2000</p>
+                                <p style="margin-left: 5px;">1900</p>
                             </div>
                             <p class="right-arrow">
                                 <i class="fas fa-chevron-left" style="transform: rotateZ(180deg);"></i>

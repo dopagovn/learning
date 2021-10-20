@@ -28,17 +28,8 @@
     }
     function initDataUsers(){
         $connect = mysqli_connect(HOSTNAME, USER, PASS, DB);
-<<<<<<< HEAD
-        $result = mysqli_query($connect ,'SELECT count(*) as Amount FROM users');
-        $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-
-        
-        if($data[0]['Amount'] > 0){
-=======
         $amountRow = getAmountRowInTable('Users');
         if($amountRow > 0){
->>>>>>> vinh
             return;
         }
         $password = md5('12345');
@@ -52,9 +43,6 @@
         $result = mysqli_multi_query($connect, $query);
         mysqli_close($connect);
     }
-<<<<<<< HEAD
-
-=======
     function createTableUserActive(){
         $connect = mysqli_connect(HOSTNAME, USER, PASS, DB);
         $query = 'CREATE TABLE IF NOT EXISTS UserActive (
@@ -96,5 +84,4 @@
         mysqli_close($connect);
         return $data;
     }
->>>>>>> vinh
 ?>
