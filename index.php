@@ -18,13 +18,13 @@
 <div class="container">
         <h2 id="about">Kết nối<br>với mọi người <br>thật dễ dàng</br></h2>
         <div class="login-form col-4">
-            <form method="$_POST" action="./chat.php">
-                <input id="username" class="form-control" type="text" placeholder="Nhập tài khoản"><br>
-                <input id="password" class="form-control" type="password" placeholder="Nhập mật khẩu"><br>
-                <input  class="btnLogin btn btn-primary" type="submit" name="" value="Đăng Nhập"><br>
+            <form action="./chat.php" method="post">
+                <input id="txtUsername" name="email" class="form-control" type="text" placeholder="Nhập tài khoản"><br>
+                <input id="txtPassword" name="password" class="form-control" type="password" placeholder="Nhập mật khẩu"><br>
+                <input  class="btnLogin btn btn-primary" type="submit" name="login" value="Đăng Nhập"><br>
             </form>
         </div>
-            <a href="./register.php" class="reg-link nav-link">Chưa có tài khoản? Đăng ký ngay</a>
+        <a href="./register.php" class="reg-link nav-link">Chưa có tài khoản? Đăng ký ngay</a>
 </div>
 
    

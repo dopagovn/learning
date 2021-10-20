@@ -2,7 +2,7 @@
 .footer {
     position:fixed;
     height: 30px;
-    width: 12%;
+    width: 100%;
     clear: both;
     bottom: 0;
 }

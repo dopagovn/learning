@@ -8,6 +8,7 @@
 
 <div class="container-profile">
         <form class="f-title">
+<<<<<<< HEAD
                 <h1> Thông tin cá nhân </h1>
                 <div class="form-text"><lable>Tên người dùng</lable><br><input type="text" disabled>                       
                         <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#edit-name" aria-expanded="false" aria-controls="collapseExample">
@@ -39,6 +40,7 @@
                                         </p>
                                 </div>
                         </div>
+
                         </div>
 
                         <div class="form-text"><lable>Số điện thoại</lable><br><input type="text" disabled>                                                    
@@ -84,6 +86,7 @@
                                         </div>
                                 </div>
                         </div>
+<<<<<<< HEAD
 
                         <div class="form-text"><lable>Giới tính</lable><br><input type="text" disabled> 
                         <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#edit-sex" aria-expanded="false" aria-controls="collapseExample">
@@ -102,6 +105,9 @@
                                         </div>
                                 </div>
                         </div>
+=======
+                        <div class="form-text"><lable>Giới tính</lable><br><input type="text"> <a  href="">Chỉnh sửa</a></br></br>
+>>>>>>> master
          </form> 
 </div>
 

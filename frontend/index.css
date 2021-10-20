@@ -33,7 +33,7 @@ body{
     padding-top: 150px;
 }
 
-.login-form #username{
+.login-form #txtUsername{
     padding-right: 40px;
     border-radius: 20px;
     background: rgba(0, 0, 0, .04);
@@ -43,7 +43,7 @@ body{
     vertical-align: middle;
 }
 
-.login-form #password{
+.login-form #txtPassword{
     padding-right: 40px;
     border: none;
     border-radius: 20px;
