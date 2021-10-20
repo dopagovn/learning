@@ -2,7 +2,7 @@
     //Cấu hình database:
     CONST HOSTNAME = 'localhost'; // Thêm hostname
     CONST USER     = 'root'; // thêm user
-    CONST PASS     = ''; // thêm pass
+    CONST PASS     = 'ilikeMinhChi'; // thêm pass
     CONST DB       = 'chatapp'; // thêm Database name
     function createDataBase(){
         $connect = mysqli_connect(HOSTNAME, USER, PASS);
@@ -31,13 +31,8 @@
         $result = mysqli_query($connect ,'SELECT count(*) as Amount FROM users');
         $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-<<<<<<< HEAD
 
         
-
-
-=======
->>>>>>> quoc
         if($data[0]['Amount'] > 0){
             return;
         }
