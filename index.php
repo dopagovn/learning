@@ -1,8 +1,9 @@
 <?php
     require './backend/web_config.php';
     load_top();
-    load_footer();
 ?>
+
+<link href="./frontend/index.css" rel="stylesheet">  
 
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid justify-content-start">
@@ -20,12 +21,11 @@
             <form method="$_POST" action="./chat.php">
                 <input id="username" class="form-control" type="text" placeholder="Nhập tài khoản"><br>
                 <input id="password" class="form-control" type="password" placeholder="Nhập mật khẩu"><br>
-                <input type="submit" class="btnLogin btn btn-primary" value="Đăng nhập">
-                <a href="./register.php" class="nav-link">Chưa có tài khoản? Đăng ký ngay</a>
+                <input  class="btnLogin btn btn-primary" type="submit" name="" value="Đăng Nhập"><br>
             </form>
-
-            
         </div>
-        
+            <a href="./register.php" class="reg-link nav-link">Chưa có tài khoản? Đăng ký ngay</a>
 </div>
+
    
+<?php load_footer(); ?>

@@ -82,7 +82,7 @@
         }
     }
 ?>
-<?php 
+<?php
     require('./backend/web_config.php');
     load_top();
 ?>
@@ -116,6 +116,7 @@
                 <p class="title">Ngày sinh</p>
                 <div class="birthday">
                     <input class="textbox" type="text" value="<?php echo (isset($_POST['birthDay'])) ? $_POST['birthDay'] : '1/1/1900';?>" name="birthDay">
+                    <input class="textbox" type="text" value="1/1/2000">
                     <p class="birthday__calendar"><i class="far fa-calendar"></i></p> 
                     <div class="date-picker" style="display: none;">
                         <div class="date-picker__choice">
@@ -124,7 +125,7 @@
                             </p>
                             <div class="month-year">
                                 <p>Tháng <span>1</span></p>,
-                                <p style="margin-left: 5px;">1900</p>
+                                <p style="margin-left: 5px;">2000</p>
                             </div>
                             <p class="right-arrow">
                                 <i class="fas fa-chevron-left" style="transform: rotateZ(180deg);"></i>

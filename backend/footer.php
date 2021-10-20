@@ -1,13 +1,19 @@
-
+<style>
+.footer {
+    position:fixed;
+    height: 40px;
+    width: 100%;
+    clear: both;
+    bottom: 0;
+}
+</style>
 
 <!--Add Boostrap JS-->
 <script src="./frontend/bootstrap/js/bootstrap.bundle.min.js"></script>
-<div class="footer">
-  <nav class="navbar navbar-light bg-light">
+  <nav class="footer navbar navbar-light bg-dark">
       <div class="container-fluid">
-        <p style="font-size: small;">Design by &copy; Thinh</p>
+        <p style="font-size: small; color:white;">Design by &copy; Chat-Team</p>
       </div>
   </nav>
-</div>
 </body>
 </html>

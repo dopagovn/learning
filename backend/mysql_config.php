@@ -30,6 +30,9 @@
         $connect = mysqli_connect(HOSTNAME, USER, PASS, DB);
         $amountRow = getAmountRowInTable('Users');
         if($amountRow > 0){
+        $result = mysqli_query($connect ,'SELECT count(*) as Amount FROM users');
+        $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        if($data[0]['Amount'] > 0){
             return;
         }
         $password = md5('12345');
