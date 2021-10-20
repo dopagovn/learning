@@ -261,3 +261,94 @@ document.addEventListener('click', (e) => {
         datePickerElement.style.display = 'none';
     }
 });
+
+// validation
+
+const lastNameInputElement = document.querySelector('input[name="lastName"]');
+const firstNameInputElement = document.querySelector('input[name="firstName"]');;
+const emailInputElement = document.querySelector('input[name="email"]');;
+const passwordInputElement = document.querySelector('input[name="password"]');;
+const repeatPasswordInputElement = document.querySelector('input[name="repeatPassword"]');;
+const btnAgreePolicyElement = document.querySelector('input[name="agreePolicy"]');
+const btnRegisterElement = document.querySelector('button[name="register"]');
+const phoneInputElement = document.querySelector('input[name="phone"]');
+
+function onInput(e, error){
+    let element = e.target;
+    if(element.value == ""){
+        if(element.nextElementSibling == null){
+            element.insertAdjacentHTML('afterend', `<p class="error">${error}</p>`);
+        }
+    }
+    else{
+        if(element.nextElementSibling){
+            element.nextElementSibling.remove();
+        }       
+    }
+}
+
+function onFocusOut(e, error){
+    let element = e.target;
+    if(element.value == ""){
+        if(element.nextElementSibling == null){
+            element.insertAdjacentHTML('afterend', `<p class="error">${error}</p>`)
+        }
+    }
+}
+
+function emailFocusOutValidation(){
+    let ex = /^[\w]+@[a-zA-Z0-9]{3,5}\.[a-zA-Z0-9]{2,5}(\.[a-zA-Z0-9]{2,5})?$/; 
+    let regEx = new RegExp(ex);
+    if(emailInputElement.value != ""){
+        if(!regEx.test(emailInputElement.value)){
+            if(emailInputElement.nextElementSibling == null){
+                emailInputElement.insertAdjacentHTML('afterend', '<p class="error">Email không hợp lệ</p>')
+            }
+        }
+    }
+}
+
+lastNameInputElement.addEventListener('input', (e) => onInput(e, 'Hãy nhập họ'));
+lastNameInputElement.addEventListener('focusout', (e) => onFocusOut(e, 'Hãy nhập họ'));
+
+firstNameInputElement.addEventListener('input', (e) => onInput(e, 'Hãy nhập tên'));
+firstNameInputElement.addEventListener('focusout', (e) => onFocusOut(e, 'Hãy nhập tên'));
+
+emailInputElement.addEventListener('input', (e) => onInput(e, 'Hãy nhập email'));
+emailInputElement.addEventListener('focusout', (e) => {onFocusOut(e, 'Hãy nhập email'), emailFocusOutValidation()});
+
+passwordInputElement.addEventListener('input', (e) => onInput(e, 'Hãy nhập mật khẩu'));
+passwordInputElement.addEventListener('focusout', (e) => onFocusOut(e, 'Hãy nhập mật khẩu'));
+
+repeatPasswordInputElement.addEventListener('input', (e) => onInput(e, 'Hãy nhập lại mật khẩu'));
+repeatPasswordInputElement.addEventListener('focusout', (e) => onFocusOut(e, 'Hãy nhập lại mật khẩu'));
+
+btnAgreePolicyElement.addEventListener('click', () => {
+    if(btnRegisterElement.nextElementSibling){
+        btnRegisterElement.nextElementSibling.remove();
+    }
+});
+
+phoneInputElement.addEventListener('keydown', (e) => {
+    let ex = /[0-9]$/;
+    let RegEx = new RegExp(ex);
+    if(!RegEx.test(e.key) && e.key != 'Backspace'){
+        e.preventDefault();
+    }
+});
+
+phoneInputElement.addEventListener('focus', () => {
+    if(phoneInputElement.nextElementSibling != null){
+        phoneInputElement.nextElementSibling.remove();
+    }
+})
+
+phoneInputElement.addEventListener('focusout', () => {
+    let ex = /^[0-9]{10,13}$/;
+    let RegEx = new RegExp(ex);
+    if(!RegEx.test(phoneInputElement.value) && phoneInputElement.value != ''){
+        if(phoneInputElement.nextElementSibling == null){
+            phoneInputElement.insertAdjacentHTML('afterend', '<p class="error">Số điện thoại từ 10->13 chữ số</p>');
+        }
+    }
+});
