@@ -48,6 +48,13 @@
         </div>
         <div class="block-center col-6">
             <h1>Dashboard</h1>
+            <div class="dashboard">
+                    <img src="./frontend/img/user1.jpeg" alt="">
+                    <div class="details">
+                        <span>Người dùng 1</span>
+                        <p>Đang hoạt động</p>
+                    </div>
+            </div>
         </div>
         <div class="block-right col">
             <h1>Thông tin</h1>
