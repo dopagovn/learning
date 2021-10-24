@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php
     if(isset($_POST['register'])){
         // echo $_POST['firstName'] . '<br/>';
@@ -46,11 +47,7 @@
             $validations['emailIsExisted'] = true;
         }
 
-        if(count($validations) == 0){
-            require_once('backend/mail_config/mail_config.php');         
-            $activeCode = uniqid();
-            sendMail($_POST['email'], 'Mã kích hoạt của bạn là: ' . $activeCode);
-
+        if(count($validations) == 0){      
             // save DB
             $password = md5($_POST['password']);
             $birthDay = explode('/' ,$_POST['birthDay']);
@@ -67,10 +64,18 @@
             $result = mysqli_query($connect, $query);
             $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
             $maxId = $data[0]['MaxId'];
+            $activeCode = uniqid();
             $query = "INSERT INTO UserActive VALUES($maxId, '{$activeCode}')";
             $result = mysqli_query($connect, $query);
 
             mysqli_close($connect);
+
+            // save session
+            $_SESSION['idUser'] = $maxId;
+            $_SESSION['activeCode'] = $activeCode;
+
+            // Navigate ActivePage
+            Header('location: activePage.php');
         }        
     }
     function getPreviousValue($name){

@@ -2,7 +2,7 @@
     //Cấu hình database:
     CONST HOSTNAME = 'localhost'; // Thêm hostname
     CONST USER     = 'root'; // thêm user
-    CONST PASS     = 'ilikeMinhChi'; // thêm pass
+    CONST PASS     = ''; // thêm pass
     CONST DB       = 'chatapp'; // thêm Database name
     function createDataBase(){
         $connect = mysqli_connect(HOSTNAME, USER, PASS);
@@ -83,5 +83,10 @@
         mysqli_free_result($result);
         mysqli_close($connect);
         return $data;
+    }
+    function excuteQuery($query){
+        $connect = mysqli_connect(HOSTNAME, USER, PASS, DB);
+        $result = mysqli_query($connect ,$query);
+        mysqli_close($connect);
     }
 ?>
