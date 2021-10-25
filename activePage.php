@@ -10,9 +10,6 @@
             header('location: index.php');
         }
     }
-    if(isset($_POST[''])){
-
-    }
     $countDown = -1;
     function checkSecondSendMail($haveSendMail = false){
         global $countDown;
