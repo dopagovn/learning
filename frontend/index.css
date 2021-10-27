@@ -2,6 +2,16 @@ body{
     margin: 0;
     padding: 0;
 }
+body > .bg{
+    height: 100%;
+    width: 100%;
+    background: #ee0979;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ff6a00, #ee0979);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ff6a00, #ee0979); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+    clip-path: polygon(50% 15%, 0% 100%, 100% 100%);
+    position: absolute;
+    z-index: -1;
+}
 
 #login-title {
     font-size: 50px;
@@ -28,6 +38,7 @@ body{
     -webkit-background-clip: text;
 }
 
+
 .footer {
     position:absolute;
     bottom:0;
@@ -35,11 +46,12 @@ body{
     height: 50px;
 }
 
+
 .login-form{
     padding-top: 150px;
 }
 
-.login-form #username{
+.login-form #txtUsername{
     padding-right: 40px;
     border-radius: 20px;
     background: rgba(0, 0, 0, .04);
@@ -49,7 +61,7 @@ body{
     vertical-align: middle;
 }
 
-.login-form #password{
+.login-form #txtPassword{
     padding-right: 40px;
     border: none;
     border-radius: 20px;
@@ -66,7 +78,7 @@ body{
 }
 
 .reg-link {
-    color: red;
+    color: blue;
     padding-left: 3px;
 }
 
@@ -75,4 +87,9 @@ img.preview{
     height: 100%;
     margin-top: -40%;
     margin-left: 500px;
+}
+
+.error{
+    color: red;
+    margin-left: 30px;
 }
