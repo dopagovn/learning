@@ -25,7 +25,7 @@
                     <img src="./frontend/img/user1.jpeg" alt="">
                     <div class="details">
                         <span>Người dùng 1</span>
-                        <p>Đây là nội dung tin nhắn</p>
+                        <p>Chào em!</p>
                     </div>
                 </div>
             </a>
@@ -70,8 +70,87 @@
                         <p>Chào em!</p>
                     </div>
                 </div>
+                <div class="chat outgoing">
+                    <div class="details">
+                        <p>Chào anh!</p>
+                    </div>
+                </div>
+                <div class="chat incoming">
+                    <img src="./frontend/img/user1.jpeg" alt="">
+                    <div class="details">
+                        <p>Chào em!</p>
+                    </div>
+                </div>
+                <div class="chat outgoing">
+                    <div class="details">
+                        <p>Chào anh!</p>
+                    </div>
+                </div>
+                <div class="chat incoming">
+                    <img src="./frontend/img/user1.jpeg" alt="">
+                    <div class="details">
+                        <p>Chào em!</p>
+                    </div>
+                </div>
+                <div class="chat outgoing">
+                    <div class="details">
+                        <p>Chào anh!</p>
+                    </div>
+                </div>
+                <div class="chat incoming">
+                    <img src="./frontend/img/user1.jpeg" alt="">
+                    <div class="details">
+                        <p>Chào em!</p>
+                    </div>
+                </div>
+                <div class="chat outgoing">
+                    <div class="details">
+                        <p>Chào anh!</p>
+                    </div>
+                </div>
+                <div class="chat incoming">
+                    <img src="./frontend/img/user1.jpeg" alt="">
+                    <div class="details">
+                        <p>Chào em!</p>
+                    </div>
+                </div>
+                <div class="chat outgoing">
+                    <div class="details">
+                        <p>Chào anh!</p>
+                    </div>
+                </div>
+                <div class="chat incoming">
+                    <img src="./frontend/img/user1.jpeg" alt="">
+                    <div class="details">
+                        <p>Chào em!</p>
+                    </div>
+                </div>
+                <div class="chat outgoing">
+                    <div class="details">
+                        <p>Chào anh!</p>
+                    </div>
+                </div>
+                <div class="chat incoming">
+                    <img src="./frontend/img/user1.jpeg" alt="">
+                    <div class="details">
+                        <p>Chào em!</p>
+                    </div>
+                </div>
+                <div class="chat outgoing">
+                    <div class="details">
+                        <p>Chào anh!</p>
+                    </div>
+                </div>
+                <div class="chat incoming">
+                    <img src="./frontend/img/user1.jpeg" alt="">
+                    <div class="details">
+                        <p>Chào em!</p>
+                    </div>
+                </div>
             </div>
             <form class="typing-area" action="#">
+                <a href="#"><i class="material-icons">attach_file</i></a>
+                <a href="#"><i class="material-icons">image</i></a>
                 <input type="text" placeholder="Nhập tin nhắn tại đây...">
                 <button class="btn"><i class="material-icons">send</i></button>
             </form>
@@ -80,7 +159,7 @@
             <h1><b>INFO</b></h1>
             <div class="details" align="center">
                 <img src="./frontend/img/user1.jpeg" alt="">
-                <a href="#"><h2>Người dùng 1<h2></a>
+                <a href="profile.php"><h2>Người dùng 1<h2></a>
             </div>
         </div>
     </div>

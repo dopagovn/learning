@@ -1,7 +1,7 @@
 .container-fluid h1{
     text-align: center;
     font-size: large;
-    color:rgb(231, 74, 74);
+    color:rgb(255, 92, 92);
 }
 
 .block-left{
@@ -203,7 +203,7 @@
 
 .typing-area input{
     height: 30px;
-    width: calc(100% - 55px);
+    width: calc(100% - 50px);
     font-size: 15px;
     border: 1px none #ccc;
     padding: 0 10px;
@@ -214,5 +214,9 @@
 
 .typing-area button{
     height: 20px;
-    color: rgb(72, 72, 247);
+    color: rgb(181, 181, 233);
+}
+
+.typing-area a{
+    color: rgb(106, 10, 233);
 }

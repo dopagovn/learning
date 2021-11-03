@@ -26,10 +26,7 @@
                             document.location = './chat.php';
                         </script>";
         }else{
-            echo "<script>
-                    var check = alert('Đăng nhập thất bại');
-                    document.location = './index.php';
-                </script>";;
+                
         }
     }
 
@@ -42,9 +39,6 @@
 <!-- Index CSS -->
 <link href="./frontend/index.css" rel="stylesheet"> 
 
-<div class="bg">
-    
-</div>
 
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid justify-content-start">
