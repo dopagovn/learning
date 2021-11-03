@@ -1,6 +1,8 @@
-<?php  session_start(); ?>
-
 <?php
+    session_start();
+    if(!isset($_SESSION['idUser'])){
+        header('location: index.php');
+    }
     require './backend/web_config.php';
     load_top();
 ?>
