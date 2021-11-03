@@ -27,6 +27,8 @@
             if(count($row)){
                 $_SESSION['idUser'] = $row;
                 header("location: chat.php");
+            }else{
+                
             }
         }
     }
