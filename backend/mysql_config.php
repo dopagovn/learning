@@ -43,6 +43,7 @@
         $result = mysqli_multi_query($connect, $query);
         mysqli_close($connect);
     }
+
     function createTableUserActive(){
         $connect = mysqli_connect(HOSTNAME, USER, PASS, DB);
         $query = 'CREATE TABLE IF NOT EXISTS UserActive (
@@ -83,5 +84,10 @@
         mysqli_free_result($result);
         mysqli_close($connect);
         return $data;
+    }
+    function excuteQuery($query){
+        $connect = mysqli_connect(HOSTNAME, USER, PASS, DB);
+        $result = mysqli_query($connect ,$query);
+        mysqli_close($connect);
     }
 ?>

@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php
     if(isset($_POST['register'])){
         // echo $_POST['firstName'] . '<br/>';
@@ -46,11 +47,7 @@
             $validations['emailIsExisted'] = true;
         }
 
-        if(count($validations) == 0){
-            require_once('backend/mail_config/mail_config.php');         
-            $activeCode = uniqid();
-            sendMail($_POST['email'], 'Mã kích hoạt của bạn là: ' . $activeCode);
-
+        if(count($validations) == 0){      
             // save DB
             $password = md5($_POST['password']);
             $birthDay = explode('/' ,$_POST['birthDay']);
@@ -67,10 +64,18 @@
             $result = mysqli_query($connect, $query);
             $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
             $maxId = $data[0]['MaxId'];
+            $activeCode = uniqid();
             $query = "INSERT INTO UserActive VALUES($maxId, '{$activeCode}')";
             $result = mysqli_query($connect, $query);
 
             mysqli_close($connect);
+
+            // save session
+            $_SESSION['idUser'] = $maxId;
+            $_SESSION['activeCode'] = $activeCode;
+
+            // Navigate ActivePage
+            Header('location: activePage.php');
         }        
     }
     function getPreviousValue($name){
@@ -115,7 +120,9 @@
             <div>
                 <p class="title">Ngày sinh</p>
                 <div class="birthday">
+
                     <input class="textbox" type="text" value="<?php echo (isset($_POST['birthDay'])) ? $_POST['birthDay'] : '1/1/1900';?>" name="birthDay">
+
                     <p class="birthday__calendar"><i class="far fa-calendar"></i></p> 
                     <div class="date-picker" style="display: none;">
                         <div class="date-picker__choice">
@@ -154,7 +161,9 @@
                 <p class="title">Giới tính</p>
                 <div class="gender">
                     <p>
+
                         <input type="radio" name="gender" value="1" checked> <span>Nam</span>
+
                     </p>
                     <p>
                         <input type="radio" name="gender" value="0"> <span>Nữ</span>
@@ -165,6 +174,7 @@
         <div class="register__row register__row--1">
             <div>
                 <p class="title">Email</p>
+
                 <input class="textbox" type="text" name="email" value="<?php getPreviousValue('email'); ?>">
                 <?php 
                     if(isset($validations['emailIsEmpty'])){
@@ -177,22 +187,26 @@
                         echo '<p class="error">Email đã tồn tại</p>';
                     }
                 ?>
+
             </div>
         </div>
         <div class="register__row register__row--1">
             <div>
                 <p class="title">Mật khẩu</p>
+
                 <input class="textbox" type="password" name="password" value="<?php getPreviousValue('password'); ?>">
                 <?php 
                     if(isset($validations['passwordIsEmpty'])){
                         echo '<p class="error">Hãy nhập mật khẩu</p>';
                     }
                 ?>
+
             </div>
         </div>
         <div class="register__row register__row--1">
             <div>
                 <p class="title">Nhập lại mật khẩu</p>
+
                 <input class="textbox" type="password" name="repeatPassword" value="<?php getPreviousValue('repeatPassword'); ?>">
                 <?php 
                     if(isset($validations['repeatPasswordIsEmpty'])){
@@ -202,11 +216,13 @@
                         echo '<p class="error">Mật khẩu không trùng khớp</p>';
                     }
                 ?>
+
             </div>
         </div>
         <div class="register__row register__row--1">
             <div>
                 <p class="title">Số điện thoại</p>
+
                 <input class="textbox" type="text" name="phone" value="<?php getPreviousValue('phone'); ?>">
                 <?php 
                     if(isset($validations['phoneInValid'])){

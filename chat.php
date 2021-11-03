@@ -1,7 +1,11 @@
-<?php   
-    require_once('./backend/web_config.php');
+<?php  session_start(); ?>
+
+<?php
+    require './backend/web_config.php';
     load_top();
 ?>
+
+
 
 <link rel="stylesheet" href="./frontend/chat.css">
 
@@ -47,7 +51,6 @@
 
         </div>
         <div class="block-center col-6">
-            <h1><b>DASHBOARD</b></h1>
             <div class="dashboard">
                     <img src="./frontend/img/user1.jpeg" alt="">
                     <div class="details">
@@ -55,6 +58,23 @@
                         <p>Đang hoạt động</p>
                     </div>
             </div>
+            <div class="chat-box">
+                <div class="chat outgoing">
+                    <div class="details">
+                        <p>Chào anh!</p>
+                    </div>
+                </div>
+                <div class="chat incoming">
+                    <img src="./frontend/img/user1.jpeg" alt="">
+                    <div class="details">
+                        <p>Chào em!</p>
+                    </div>
+                </div>
+            </div>
+            <form class="typing-area" action="#">
+                <input type="text" placeholder="Nhập tin nhắn tại đây...">
+                <button class="btn"><i class="material-icons">send</i></button>
+            </form>
         </div>
         <div class="block-right col">
             <h1><b>INFO</b></h1>
