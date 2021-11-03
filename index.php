@@ -1,31 +1,34 @@
 <?php
     session_start();
-    if(isset($_POST['login'])){
-        $check = [];
-        if(empty($_POST['email'])){
-            $check['emailIsEmpty'] = true;
-        }
-        if(empty($_POST['password'])){
-            $check['passwordIsEmpty'] = true;
-        }
-        require_once './backend/mysql_config.php';
-        $email = $_POST['email'];
-        $password  = md5($_POST['password']);
+    if(isset($_SESSION['idUser'])){
+        header('location: chat.php');
+    }else {
+            if(isset($_POST['login'])){
+            $check = [];
+            if(empty($_POST['email'])){
+                $check['emailIsEmpty'] = true;
+            }
+            if(empty($_POST['password'])){
+                $check['passwordIsEmpty'] = true;
+            }
+            require_once './backend/mysql_config.php';
+            $email = $_POST['email'];
+            $password  = md5($_POST['password']);
 
-    
-        $connect = mysqli_connect(HOSTNAME, USER, PASS, DB);
+        
+            $connect = mysqli_connect(HOSTNAME, USER, PASS, DB);
 
-        $sql = "SELECT * FROM users WHERE Email = '$email' AND Password = '$password'";
-        $result = mysqli_query($connect, $sql);
-        $row = mysqli_fetch_row($result);
-        echo "<pre>";
-        print_r($row);
-        die;
-        if(count($row)){
-            $_SESSION['idUser'] = $row;
-            header("location: chat.php");
+            $sql = "SELECT * FROM users WHERE Email = '$email' AND Password = '$password'";
+            $result = mysqli_query($connect, $sql);
+            $row = mysqli_fetch_row($result);
+            // echo "<pre>";
+            // print_r($row);
+            // die;
+            if(count($row)){
+                $_SESSION['idUser'] = $row;
+                header("location: chat.php");
+            }
         }
-
     }
 
 ?>
