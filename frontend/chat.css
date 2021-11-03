@@ -58,7 +58,7 @@ main{
     border-radius: 1rem;
 }
 .logout{
-    display: flex;
+    display: block;
     margin: 3rem 0rem;
     padding: 1rem 2rem;
     align-items: center;
@@ -90,4 +90,14 @@ main{
     padding: 1rem 2rem;
     align-items: center;
     text-align: center;
+}
+
+.links a{
+    text-decoration: none;
+    display: flex;
+}
+
+button{
+    border: none;
+    background: none;
 }
