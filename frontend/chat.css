@@ -57,21 +57,37 @@ main{
     background: linear-gradient(to right bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.5));
     border-radius: 1rem;
 }
+.logout{
+    display: flex;
+    margin: 3rem 0rem;
+    padding: 1rem 2rem;
+    align-items: center;
+    text-align: center;
+}
+
+.logout h2{
+    font-size: 15px;
+    padding: 0rem 2rem;
+}
 .dashboard h3{
     font-size: 20px;
 }
 
 .links h2{
-    font-size: 10px;
+    font-size: 15px;
     padding: 0rem 2rem;
 }
 
 .chat-box{
     flex: 4;
 }
+.chat-box h3{
+    text-align: center;
+}
 .links{
     display: flex;
     margin: 3rem 0rem;
-    padding: 1rem 3rem;
+    padding: 1rem 2rem;
     align-items: center;
+    text-align: center;
 }
