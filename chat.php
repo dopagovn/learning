@@ -1,24 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-       RE
-    </title>
+<?php 
+    require_once('./backend/web_config.php');
+    load_top();
+?>
 
-
-
-    <!--Add Boostrap CSS-->
-    <link href="./frontend/bootstrap/css/bootstrap.min.css" rel="stylesheet">    
-
-    <!-- Google Icons -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  
-
-</head>
-<body>
 
 <link rel="stylesheet" href="./frontend/chat.css">
 
@@ -28,21 +12,21 @@
                  <img src="./frontend/img/user1.jpeg" alt="">
                  <h3>Bruce Wayne</h3>
                      <div class="links">
-                        <a href="#"><span class="material-icons">
+                        <a href="#" onclick="openTab( event , 'Chat')"><span class="material-icons">
                             chat_bubble
                         </span>
                         <h2>Tin nhắn</h2>
                         </a>
                     </div>
                     <div class="links">
-                        <a href="#"><span class="material-icons">
+                        <a href="#" onclick="openTab( event , 'Friends')"><span class="material-icons">
                             people
                         </span>
                         <h2>Bạn bè</h2>
                         </a>
                     </div>
-                    <div class="links">
-                        <a href="#"><span class="material-icons">
+                    <div class="links" onclick="openTab( event , 'Settings')">
+                        <a href="#" ><span class="material-icons">
                             settings
                         </span>
                         <h2>Setting</h2>
@@ -54,18 +38,23 @@
                         </span></button>
                     </div>
              </div>
-             
-             <div class="chat-box">
-                 <h3>Dashboard</h3>
+             <!-- Tab Content -->
+             <div id="Chat" class="tabcontent">
+                 Tin nhắn
+             </div>
+             <div id="Friends" class="tabcontent">
+                 Bạn bè
+             </div>
+             <div id="Settings" class="tabcontent">
+                 Cài đặt
              </div>
          </section>
     </main>
+
+
     <div class="circle1"></div>
     <div class="circle2"></div>
+
+<script src="./frontend/chat.js"></script>
 <!--Add Boostrap JS-->
-<script src="./frontend/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <footer>
-      
-  </footer>
-</body>
-</html>
+<?php load_footer(); ?>

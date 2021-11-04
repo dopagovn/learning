@@ -57,28 +57,27 @@ main{
     background: linear-gradient(to right bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.5));
     border-radius: 1rem;
 }
-.logout{
-    display: block;
-    margin: 3rem 0rem;
-    padding: 1rem 2rem;
-    align-items: center;
-    text-align: center;
-}
 
-.logout h2{
-    font-size: 15px;
-    padding: 0rem 2rem;
-}
+
+
+
 .dashboard h3{
-    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    color: #426696;
+    font-weight: 600;
+    opacity: 0.8;
 }
 
 .links h2{
-    font-size: 15px;
-    padding: 0rem 2rem;
+    font-size: 1.1rem;
+    padding: 0rem 1rem;
+    font-family: "Poppins", sans-serif;
+    color: #426696;
+    font-weight: 600;
 }
 
-.chat-box{
+.tabcontent{
     flex: 4;
 }
 .chat-box h3{
@@ -86,15 +85,29 @@ main{
 }
 .links{
     display: flex;
-    margin: 3rem 0rem;
-    padding: 1rem 2rem;
+    margin: 0.5rem 0rem;
+    padding: 0.5rem 2rem;
     align-items: center;
     text-align: center;
+    color: #658ec6;
+    opacity: 0.8;
 }
 
 .links a{
     text-decoration: none;
     display: flex;
+    color: #658ec6;
+}
+
+.logout{
+    display: block;
+    margin: 3rem 0rem;
+    padding: 2rem 2rem;
+    align-items: center;
+    text-align: center;
+    width: 40%;
+    height: 10%;
+    color: white;
 }
 
 button{
