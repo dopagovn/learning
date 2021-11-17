@@ -3,6 +3,13 @@
     load_top();
 ?>
 
+<?php
+    session_start();
+    if(!isset($_SESSION["idUser"]))
+
+        header("location:index.php");
+?>
+
 
 <link rel="stylesheet" href="./frontend/chat.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
@@ -38,7 +45,7 @@
                         </span></button>
                     </div>
              </div>
-             <!-- Tab Content -->
+             <!-- Chat Tabs -->
              <div id="Chat" class="tabcontent">
                  <div class="chat-main">
                     <div class="list-conversation">
@@ -229,17 +236,78 @@
                     </div>
                  </div>
              </div>
+            <!-- Friends tabs --> 
              <div id="Friends" class="tabcontent">
-                <div class="friends-main">
+                 <div class="friend-main">
                     <div class="list-conversation">
-                        <i class="search-bar"></i>
-                        <input placeholder="Tìm kiếm">
+                        <div class="search-bar">
+                            <i class="fas fa-search"></i>
+                            <input placeholder="Tìm kiếm">
+                        </div>
+                        <div class="conversations">
+                             <div class="contact-list-item">
+                                    <img src="./frontend/img/list-user-add.png" class="fr-conv-item-avt">
+                                    <p>Danh sách kết bạn</p>
+                                </div>
+                            <div class="conversations__title">
+                                <span>Danh sách bạn bè (3)<i class="fas fa-chevron-down" style="margin-left: 5px;"></i></span>                               
+                            </div>
+                            <div class="conversations__main">
+                                <div class="conversation-item">
+                                    <img class="conversation-item__avatar" src="./frontend/img/user1.jpeg">
+                                    <div class="conversation-item__content">
+                                        <p class="title">Nguyễn Văn</p>
+                                    </div>
+                                </div>
+                                <div class="conversation-item">
+                                    <img class="conversation-item__avatar" src="./frontend/img/user1.jpeg">
+                                    <div class="conversation-item__content">
+                                        <p class="title">Trần Huy</p>
+                                    </div>
+                                </div>
+                                <div class="conversation-item">
+                                    <img class="conversation-item__avatar" src="./frontend/img/user1.jpeg">
+                                    <div class="conversation-item__content">
+                                        <p class="title">Mỹ Tâm</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                <div class="friend-add__list">
+                    <img src="./frontend/img/list-user-add.png" class="fr-conv-item-avt">
+                    <h4 class="tab-name">Danh sách kết bạn</h4>
+
+                    <div class="area-add">
+                        <div class="card-item" style="width: 16rem;">
+                            <div class="card-item__content">
+                                <img src="./frontend/img/user1.jpeg" class="card-img-top rounded-3" alt="...">
+                                <div class="card-item__body">
+                                    <h6 class="card-title">Batman</h6>
+                                    <a href="#" class="btn btn-primary">Đồng ý</a>
+                                    <a href="#"class="btn btn-outline-primary">Hủy</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-item" style="width: 16rem;">
+                            <div class="card-item__content">
+                                <img src="./frontend/img/user3.jpg" class="card-img-top rounded-3" alt="...">
+                                <div class="card-item__body">
+                                    <h6 class="card-title">Wonder Woman</h6>
+                                    <a href="#" class="btn btn-primary">Đồng ý</a>
+                                    <a href="#"class="btn btn-outline-primary">Hủy</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
              </div>
+
+             <!-- Settings tabs 
              <div id="Settings" class="tabcontent">
                  Cài đặt
              </div>
+             --> 
          </section>
     </main>
 

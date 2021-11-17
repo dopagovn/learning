@@ -20,15 +20,13 @@
 
             $sql = "SELECT * FROM users WHERE Email = '$email' AND Password = '$password'";
             $result = mysqli_query($connect, $sql);
-            $row = mysqli_fetch_row($result);
-            // echo "<pre>";
-            // print_r($row);
-            // die;
-            if(count($row)){
+            $row = mysqli_fetch_array($result);
+
+            if($row){
                 $_SESSION['idUser'] = $row;
                 header("location: chat.php");
             }else{
-                
+                header("location:index.php");
             }
         }
     }
