@@ -9,8 +9,6 @@
     </title>
 
 
-    <!-- MY CCSS -->
-    <link href="./frontend/index.css" rel="stylesheet">
     <!--Add Boostrap CSS-->
     <link href="./frontend/bootstrap/css/bootstrap.min.css" rel="stylesheet">    
 

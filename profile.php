@@ -4,16 +4,16 @@
         load_footer();
 
 ?>
-<link rel="stylesheet" href="./frontend/profile.css">
+<link href="./frontend/profile.css" rel="stylesheet">
 
 <div class="container-profile">
         <form class="f-title">
-<<<<<<< HEAD
-                <h1> Thông tin cá nhân </h1>
-                <div class="form-text"><lable>Tên người dùng</lable><br><input type="text" disabled>                       
-                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#edit-name" aria-expanded="false" aria-controls="collapseExample">
-                                Chỉnh sửa</button>                     
-                        <div class="collapse" id="edit-name">
+                <i><h1>Thông tin cá nhân</h1></i>
+                <br /> <br /> <br />
+                <p>Tên người dùng</p>
+                <input type="text" disabled>
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#edit-name" aria-expanded="false" aria-controls="collapseExample">Chỉnh sửa</button>
+                <div class="collapse" id="edit-name">
                                 <div class="card card-body">
                                         <p> 
                                                 <lable>Tên Người dùng mới<lable>
@@ -21,16 +21,12 @@
                                                 <br><button class="save">Lưu</button></br>
                                         </p>
                                 </div>
-                        </div>
                 </div>
 
-                <div class="form-text"><lable>Mật khẩu</lable><br><input type="text" disabled>                 
-                
-                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#edit-pass" aria-expanded="false" aria-controls="collapseExample">
-                        Chỉnh sửa
-                        </button>
-                
-                        <div class="collapse" id="edit-pass">
+                <p>Mật khẩu</p>
+                <input type="text" disabled> 
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#edit-pass" aria-expanded="false" aria-controls="collapseExample">Chỉnh sửa</button>
+                <div class="collapse" id="edit-pass">
                                 <div class="card card-body">
                                         <p> 
                                                 <lable>Mật khẩu cũ<lable><br><input type ="text"></br>
@@ -39,15 +35,12 @@
                                                 <br><button class="save">Lưu</button></br>
                                         </p>
                                 </div>
-                        </div>
+                </div>
 
-                        </div>
-
-                        <div class="form-text"><lable>Số điện thoại</lable><br><input type="text" disabled>                                                    
-                                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#edit-phone" aria-expanded="false" aria-controls="collapseExample">
-                                Chỉnh sửa</button>
-                               
-                                <div class="collapse" id="edit-phone">
+                <p>Số điện thoại</p>
+                <input type = "text" disabled> 
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#edit-phone" aria-expanded="false" aria-controls="collapseExample">Chỉnh sửa</button>
+                <div class="collapse" id="edit-phone">
                                         <div class="card card-body">
                                                 <p> 
                                                         <lable>Thay đổi số điện thoại (gồm 10 chữ số)<lable><input type ="text">
@@ -55,28 +48,11 @@
                                                 </p>
                                         </div>
                                 </div>
-                        </div>
 
-                        <div class="form-text"><lable>Email</lable><br><input type="text" disabled> 
-                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#edit-em" aria-expanded="false" aria-controls="collapseExample">
-                                Chỉnh sửa</button>
-                               
-                                <div class="collapse" id="edit-em">
-                                        <div class="card card-body">
-                                                <p> 
-                                                        <lable>Thay đổi E-mail (*@gmail.com)<lable>
-                                                        <br><input type ="text"></br>
-                                                        <br><button class="save">Lưu</button></br>
-                                                </p>
-                                        </div>
-                                </div>
-                        </div>
-
-                        <div class="form-text"><lable>Ngày sinh</lable><br><input type="text" disabled> 
-                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#edit-born" aria-expanded="false" aria-controls="collapseExample">
-                                Chỉnh sửa</button>
-                               
-                                <div class="collapse" id="edit-born">
+                <p>Ngày sinh</p>
+                <input type = "text" disabled> 
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#edit-born" aria-expanded="false" aria-controls="collapseExample">Chỉnh sửa</button>
+                <div class="collapse" id="edit-born">
                                         <div class="card card-body">
                                                 <p> 
                                                         <lable>Thay đổi ngày sinh (dd/mm/yyyy)<lable>
@@ -85,14 +61,11 @@
                                                 </p>
                                         </div>
                                 </div>
-                        </div>
-<<<<<<< HEAD
 
-                        <div class="form-text"><lable>Giới tính</lable><br><input type="text" disabled> 
-                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#edit-sex" aria-expanded="false" aria-controls="collapseExample">
-                                Chỉnh sửa</button>
-                               
-                                <div class="collapse" id="edit-sex">
+                <p>Giới tính</p>
+                <input type = "text" disabled> 
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#edit-sex" aria-expanded="false" aria-controls="collapseExample">Chỉnh sửa</button>
+                <div class="collapse" id="edit-sex">
                                         <div class="card card-body">
                                                 <p> 
                                                         <lable>Thay đổi giới tính<lable>   
@@ -104,10 +77,19 @@
                                                 </p>
                                         </div>
                                 </div>
-                        </div>
-=======
-                        <div class="form-text"><lable>Giới tính</lable><br><input type="text"> <a  href="">Chỉnh sửa</a></br></br>
->>>>>>> master
+
+                <p>G-mail</p>
+                <input type = "text" disabled> 
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#edit-gmail" aria-expanded="false" aria-controls="collapseExample">Chỉnh sửa</button>
+                <div class="collapse" id="edit-gmail">
+                                        <div class="card card-body">
+                                                <p> 
+                                                        <lable>Thay đổi E-mail (*@gmail.com)<lable>
+                                                        <br><input type ="text"></br>
+                                                        <br><button class="save">Lưu</button></br>
+                                                </p>
+                                        </div>
+                                </div>
          </form> 
 </div>
 

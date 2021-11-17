@@ -1,7 +1,7 @@
 :root{
-    --bg1: #9b59b6;
-    --bg2: #3498db;
-    --text: #26ade4;    
+    --bg1: #53065f;
+    --bg2: #1e0aa1;
+    --text: #26ade4;
 }
 
 *{
@@ -15,63 +15,91 @@ a{
 }
 
 .container-profile{
-    display: flex;
-    justify-content: center;
-    align-items: top;
-    text-align: left;
+display: flex;
+justify-content: center;
+align-items: top;
+text-align: left;
+width: 100%;
+background: linear-gradient(to right bottom, var(--bg2), var(--bg1));
 
-    width: 100%;
-    height: 110vh;
 
 }
 
-.f-title{
-    width: 500px;
-    background: #fff;
-    padding: 30px;
-    border-style: groove;
-    border-width:inherit;
+.f-title p{
+    font-size: 20px;
+    margin-top: 30px;
+    margin-bottom: 5px;
+    padding-left: 30px;
 }
-
-.f-title h1{
-    padding-bottom: 10px;
-    font-size: 25px;
-    color: rgb(24, 13, 235);
-    text-align: center;
-}
-
-.form-text{
-    margin-bottom: 10px;
-    position: relative;
-}
-
-.form-text input{
+.f-title input{
     border: none;
     outline: none;
     font-size: 20px;
     padding: 10px 10px;
-    background-color: rgba(0, 0, 0, .04);
-    border-radius: 5px;
-    color: rgb(88, 88, 88); 
-    width: 76%;    
+    background-color:rgba(0, 0, 0, .04);
+    border-radius: 10px;
+    color: rg(88, 88, 88);
+    width: 78%;
 }
-.f-title .btn{
+
+.f-title{
+    position: relative;
+    width: 500px;
+    background: #fff;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    
+
+}
+
+.f-title i {
+    position: absolute;
+    top: 20px;
+    left: -15px;
+    width: 530px;
+    height: 50px;
+    background: blueviolet;
+    text-align: center;
+    border-radius: 30px;
+    border-bottom-left-radius: 0 ;
+
+}
+
+.f-title i::before{
+    content: '';
+    position: absolute;
+    top: 50px;
+    width: 15px;
+    height: 35px;
+    background: rgb(131, 43, 131);
+    border-top-left-radius: 90px;
+    border-bottom-left-radius: 90px;
+    z-index: 2;
+    left: 0px;
+}
+
+.f-title i::after{
+    content: '';
+    position: absolute;
+    top: 45px;
+    width: 15px;
+    height: 23px;
+    background: blueviolet;
+    z-index: 1;
+    left: 0px;
+}
+
+.f-title h1{
+    color: white;
+    font-style: normal;
+}
+
+.f-title button {
+    color: var(--bg2);
+    background-color: white;
+    height: 40px;
     width: 100px;
-    margin-left: 50%;
+    border: none;
 }
-
-.form-text label{
-    font-size: 50px;
-}
-
-.form-text .save{
-    outline: none;
-    border: 1;
-    color: rgb(39, 8, 241);
-    background-color: var(--blue);
-    padding: 5px 20px;
-    border-radius: 5px;
-    margin-top: 5px;   
-}
-
-
