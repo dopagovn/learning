@@ -9,14 +9,13 @@
     </title>
 
 
-    <!-- MY CCSS -->
-    <link href="./frontend/index.css" rel="stylesheet">
     <!--Add Boostrap CSS-->
     <link href="./frontend/bootstrap/css/bootstrap.min.css" rel="stylesheet">    
 
     <!-- Google Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   
+
 </head>
 <body>
         
