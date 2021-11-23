@@ -1,15 +1,38 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['idUser'])){
+        header('location: index.php');
+    }
+    else{
+        require_once('backend/mysql_config.php');
+        $idUser = $_SESSION['idUser'];
+        // get name user
+        $query = "SELECT LastName, FirstName FROM users WHERE id = $idUser";
+        $nameUserTable = getDataByQuery($query);
+        $nameUser = $nameUserTable[0]['LastName'] . ' ' . $nameUserTable[0]['FirstName'];
+
+        // get id_conversations participated
+        $query = "SELECT Conversation_Id FROM participatants WHERE Users_Id = $idUser";
+        $idConversations = getDataByQuery($query);
+        $_SESSION['idConversations'] = $idConversations;
+
+        // get id_users participated
+        $paticipatantsInConversations = [];
+        foreach($idConversations as $idConversation){
+            $idCV = $idConversation['Conversation_Id'];
+            $query = "SELECT Users_Id FROM participatants WHERE Conversation_Id = $idCV AND Users_Id != $idUser";
+            $paticipatants = getDataByQuery($query);
+            $paticipatantsInConversations[] = $paticipatants;
+        }
+    }
+?>
+
+
 <?php 
     require_once('./backend/web_config.php');
     load_top();
+    ch_title("Dashboard");
 ?>
-
-<?php
-    session_start();
-    if(!isset($_SESSION["idUser"]))
-
-        header("location:index.php");
-?>
-
 
 <link rel="stylesheet" href="./frontend/chat.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
@@ -17,13 +40,14 @@
          <section class='glass'>
              <div class="dashboard">
                  <img src="./frontend/img/user1.jpeg" alt="">
-                 <h3>Bruce Wayne</h3>
+                 <h3><?php echo $nameUser; ?></h3>
                      <div class="links">
                         <a href="#" onclick="openTab( event , 'Chat')"><span class="material-icons">
                             chat_bubble
                         </span>
                         <h2>Tin nhắn</h2>
                         </a>
+
                     </div>
                     <div class="links">
                         <a href="#" onclick="openTab( event , 'Friends')"><span class="material-icons">
@@ -39,14 +63,15 @@
                         <h2>Setting</h2>
                         </a>
                     </div>
+
                     <div class="logout">
-                        <button><span class="material-icons">
+                        <button onclick="window.location.href='./logout.php'"><span class="material-icons">
                             logout
                         </span></button>
                     </div>
              </div>
-             <!-- Chat Tabs -->
-             <div id="Chat" class="tabcontent">
+             <!-- Tab Content -->
+             <div id="Chat" class="tabcontent" style="display: block;">
                  <div class="chat-main">
                     <div class="list-conversation">
                         <div class="search-bar">
@@ -57,36 +82,37 @@
                             <div class="conversations__title">
                                 <span>Tất cả tin nhắn<i class="fas fa-chevron-down" style="margin-left: 5px;"></i></span>                               
                             </div>
-                            <div class="conversations__main">
-                                <div class="conversation-item">
-                                    <img class="conversation-item__avatar" src="./frontend/img/user1.jpeg">
-                                    <div class="conversation-item__content">
-                                        <p class="title">Nguyễn Văn</p>
-                                        <p class="content">Batman: Xin chào thế giới I am hero</p>
-                                    </div>
-                                    <div class="conversation-item__time">23 giờ</div>
-                                </div>
-                                <div class="conversation-item">
-                                    <img class="conversation-item__avatar" src="./frontend/img/user1.jpeg">
-                                    <div class="conversation-item__content">
-                                        <p class="title">Trần Huy</p>
-                                        <p class="content">SS7: Xin chào thế giới I am hero</p>
-                                    </div>
-                                    <div class="conversation-item__time">2 ngày</div>
-                                </div>
-                                <div class="conversation-item">
-                                    <img class="conversation-item__avatar" src="./frontend/img/user1.jpeg">
-                                    <div class="conversation-item__content">
-                                        <p class="title">Mỹ Tâm</p>
-                                        <p class="content">SS2: Xin chào thế giới I am hero</p>
-                                    </div>
-                                    <div class="conversation-item__time">3 giờ</div>
-                                </div>
+                            <div class="conversations__main">                               
+                                <?php
+                                    $i = 0;
+                                    foreach($paticipatantsInConversations as $paticipatants){
+                                        $namePaticipatants = [];
+                                        foreach($paticipatants as $paticipatant){
+                                            $query = "SELECT LastName, FirstName FROM users WHERE id = {$paticipatant['Users_Id']}";
+                                            $name = getDataByQuery($query);
+                                            $namePaticipatants[] = $name[0]['LastName'] . ' ' . $name[0]['FirstName'];
+                                        }              
+                                        $namePaticipatants = implode(',', $namePaticipatants);
+                                        $view = "
+                                            <div class='conversation-item'>
+                                                <input name='idConversation' value='{$idConversations[$i]['Conversation_Id']}' style='display: none'>                                              
+                                                <img class='conversation-item__avatar' src='./frontend/img/user1.jpeg'>
+                                                <div class='conversation-item__content'>
+                                                    <p class='title'>{$namePaticipatants}</p>
+                                                    <p class='content'>Batman: Xin chào thế giới I am hero</p>
+                                                </div>
+                                                <div class='conversation-item__time'>23 giờ</div>
+                                            </div>
+                                            ";
+                                        echo $view;
+                                        $i++;
+                                    }
+                                ?>
                             </div>
                         </div>
                     </div>
                     <div class="chat-area">
-                        <!-- <div class="chat-area__intro">
+                        <div class="chat-area__intro">
                             <p class="title">Chào mừng đến với <span style="font-weight: 500;">ChatApp!</span></p>
                             <p class="content">Khám phá ứng dụng trò chuyện trực tuyến với mọi người, kết bạn, giao lưu mọi nơi mọi lúc.</p>
                             <div class="slider-bar">
@@ -121,8 +147,8 @@
                                     <label for="slide-3"></label>
                                 </div>                                                                                      
                             </div>
-                        </div> -->
-                        <div class="chat-area__main">
+                        </div>
+                        <div class="chat-area__main" style="display: none;">
                             <div class="partner-info">
                                 <div class="info">
                                     <img class="info__avatar" src="./frontend/img/user1.jpeg">
@@ -139,7 +165,7 @@
                                 </div>
                             </div>
                             <div class="area-message">
-                                <div class="area-message__timer">
+                                <!-- <div class="area-message__timer">
                                     <div class="side" style="margin-left: 65px;"></div>
                                     <div class="time">8:18&nbsp23/10/2021</div>
                                     <div class="side" style="margin-right: 65px;"></div>
@@ -152,64 +178,14 @@
                                         <p class="content__time">8:18</p>
                                     </div>
                                 </div>
-                                <div class="area-message__message">
+                                <div class="area-message__message" style="justify-content: flex-end; margin-right: 10px;">
                                     <img class="avatar" src="./frontend/img/user1.jpeg">
                                     <div class="content">
                                         <p class="content__name">Bạn</p>
                                         <p class="content__message">Xin chào tôi là đàn ông</p>
                                         <p class="content__time">09:40</p>
                                     </div>
-                                </div>
-                                <div class="area-message__message">
-                                    <img class="avatar" src="./frontend/img/user1.jpeg">
-                                    <div class="content">
-                                        <p class="content__name">Mỹ Tâm</p>
-                                        <p class="content__message">Bạn bao nhiêu tuổi?</p>
-                                        <p class="content__time">13:42</p>
-                                    </div>
-                                </div>
-                                <div class="area-message__timer">
-                                    <div class="side" style="margin-left: 65px;"></div>
-                                    <div class="time">07:18&nbsp24/10/2021</div>
-                                    <div class="side" style="margin-right: 65px;"></div>
-                                </div>
-                                <div class="area-message__message">
-                                    <img class="avatar" src="./frontend/img/user1.jpeg">
-                                    <div class="content">
-                                        <p class="content__name">Bạn</p>
-                                        <p class="content__message">Mình 16 tuổi, còn bạn?</p>
-                                        <p class="content__time">07:18</p>
-                                    </div>
-                                </div>
-                                <div class="area-message__timer">
-                                    <div class="side" style="margin-left: 65px;"></div>
-                                    <div class="time">13:48&nbsp25/10/2021</div>
-                                    <div class="side" style="margin-right: 65px;"></div>
-                                </div>
-                                <div class="area-message__message">
-                                    <img class="avatar" src="./frontend/img/user1.jpeg">
-                                    <div class="content">
-                                        <p class="content__name">Mỹ Tâm</p>
-                                        <p class="content__message">Mình 18 tuổi</p>
-                                        <p class="content__time">13:48</p>
-                                    </div>
-                                </div>
-                                <div class="area-message__message">
-                                    <img class="avatar" src="./frontend/img/user1.jpeg">
-                                    <div class="content">
-                                        <p class="content__name">Mỹ Tâm</p>
-                                        <p class="content__message">Bạn làm nghề gì?</p>
-                                        <p class="content__time">14:02</p>
-                                    </div>
-                                </div>
-                                <div class="area-message__message">
-                                    <img class="avatar" src="./frontend/img/user1.jpeg">
-                                    <div class="content">
-                                        <p class="content__name">Bạn</p>
-                                        <p class="content__message">I am hero</p>
-                                        <p class="content__time">16:07</p>
-                                    </div>
-                                </div>
+                                </div>                        -->
                             </div>
                             <div class="area-send">
                                 <div class="area-send__toolbar">
@@ -227,6 +203,7 @@
                                 <div class="area-send__input">
                                     <input type="text" placeholder="Gửi tin nhắn tới Mỹ Tâm" value="">
                                     <div class="symbol-bar">
+                                        <i class="fas fa-greater-than" style="display: none;"></i>
                                         <i class="far fa-grin"></i>
                                         <i class="far fa-thumbs-up"></i>
                                     </div>
@@ -236,8 +213,8 @@
                     </div>
                  </div>
              </div>
-            <!-- Friends tabs --> 
-             <div id="Friends" class="tabcontent">
+              <!-- Friends tabs --> 
+             <div id="Friends" class="tabcontent" style="display: none;">
                  <div class="friend-main">
                     <div class="list-conversation">
                         <div class="search-bar">
@@ -275,41 +252,38 @@
                         </div>
                     </div>
                 <div class="friend-add__list">
-                    <img src="./frontend/img/list-user-add.png" class="fr-conv-item-avt">
-                    <h4 class="tab-name">Danh sách kết bạn</h4>
-
+                    <div class="friend-add__title">
+                        <h4 class="tab-name">Danh sách kết bạn</h4>
+                        <img src="./frontend/img/list-user-add.png" class="fr-conv-item-avt">
+                    </div>                   
                     <div class="area-add">
-                        <div class="card-item" style="width: 16rem;">
-                            <div class="card-item__content">
-                                <img src="./frontend/img/user1.jpeg" class="card-img-top rounded-3" alt="...">
-                                <div class="card-item__body">
-                                    <h6 class="card-title">Batman</h6>
-                                    <a href="#" class="btn btn-primary">Đồng ý</a>
-                                    <a href="#"class="btn btn-outline-primary">Hủy</a>
-                                </div>
-                            </div>
+                        <div class="user-card">
+                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
+                            <span class="name-user">Bruce Wayne</span> <br />
+                            <button class="btn btn-primary">Chấp nhận</button>
+                            <button class="btn btn-outline-primary">Hủy</button>
                         </div>
-                        <div class="card-item" style="width: 16rem;">
-                            <div class="card-item__content">
-                                <img src="./frontend/img/user3.jpg" class="card-img-top rounded-3" alt="...">
-                                <div class="card-item__body">
-                                    <h6 class="card-title">Wonder Woman</h6>
-                                    <a href="#" class="btn btn-primary">Đồng ý</a>
-                                    <a href="#"class="btn btn-outline-primary">Hủy</a>
-                                </div>
-                            </div>
+                        <div class="user-card">
+                            <img class="user-avt" src="./frontend/img/user3.jpg" alt=""> <br/>
+                            <span class="name-user">Diana Prince</span> <br />
+                            <button class="btn btn-primary">Chấp nhận</button>
+                            <button class="btn btn-outline-primary">Hủy</button>
+                        </div>
+                        <div class="user-card">
+                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
+                            <span class="name-user">Bruce Wayne</span> <br />
+                            <button class="btn btn-primary">Chấp nhận</button>
+                            <button class="btn btn-outline-primary">Hủy</button>
                         </div>
                     </div>
-                </div> 
+                </div>  
              </div>
-
-             <!-- Settings tabs 
-             <div id="Settings" class="tabcontent">
+             <!-- <div id="Settings" class="tabcontent">
                  Cài đặt
-             </div>
-             --> 
+             </div> -->
          </section>
     </main>
+
 
 <!-- Circle -->
     <div class="circle1"></div>

@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-       RE
-    </title>
+    <title></title>
 
 
     <!--Add Boostrap CSS-->
@@ -14,7 +12,7 @@
 
     <!-- Google Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  
+    <link type=”image/x-icon” href='./frontend/img/favicon.ico' rel="shortcut icon"/>
 
 </head>
 <body>

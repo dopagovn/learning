@@ -5,6 +5,12 @@
     initDataUsers();
     createTableUserActive();
     initDataUserActive();
+    createTableConversation();
+    createTableMessages();
+    createTableParticipatants();
+    initDataConversation();
+    initDataMessages();
+    initDataParticipatants();
     echo "
         <script>
             var check = alert('Khởi tạo DATABASE thành công');

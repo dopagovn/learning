@@ -208,6 +208,7 @@ i {
   flex-direction: column;
   justify-content: space-around;
   margin-left: 5px;
+  width: 100%;
 }
 .conversation-item .conversation-item__content > .title {
   font-weight: 500;
@@ -468,6 +469,7 @@ i {
   background-color: #65dfc9;
   padding: 5px 10px;
   border-radius: 5px;
+  max-width: 500px;
 }
 .chat-area__main
   .area-message
@@ -633,7 +635,7 @@ i {
   margin: auto 14px auto 0;
   width: 52px;
   height: 52px;
-  border-radius: 50%;
+  border-radius: 10%;
 }
 
 .contact-list-item {
@@ -660,21 +662,26 @@ i {
 }
 
 .friend-add__list {
-  display: flex;
-  flex-direction: column;
   height: 100%;
 }
 
 .friend-add__list .fr-conv-item-avt {
-  border-radius: 50%;
+  border-radius: 10%;
   width: 48px;
   height: 48px;
   margin-right: 11px;
 }
 
-.friend-add__list .tab-name {
-  margin-top: -36px;
-  margin-left: 60px;
+.friend-add__title {
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0px 5px 40px 0px #80ebd7;
+  border-top-right-radius: 1rem;
+  width: 930px;
+}
+.friend-add__title .tab-name {
+  margin-top: 15px;
+  text-align: center;
   font-weight: 600px;
   color: #658ec6;
 }
@@ -696,11 +703,11 @@ i {
   border-radius: 10px;
 }
 
-.card-item .card-img-top {
+.card-item .avatar-img {
   margin-top: 3px;
-  width: 250px;
-  height: 170px;
-  border-radius: 20px;
+  width: 50px;
+  height: 150px;
+  border-radius: 5rem;
 }
 
 .card-item__body .btn {
@@ -712,4 +719,47 @@ i {
   margin-top: 10px;
   font-size: 17px;
   font-weight: 600;
+}
+
+/*area Add Friends */
+
+.area-add {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  max-height: 87%;
+}
+
+.user-card {
+  height: 270px;
+  max-width: 250px;
+  border: 1px none;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0.5)
+  );
+  display: flexbox;
+  border-radius: 1rem;
+  align-items: center;
+}
+
+.user-card .user-avt {
+  width: 250px;
+  height: 166.84px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.user-card .name-user {
+  font-size: 17px;
+  font-weight: 700;
+  justify-content: center;
+  color: #426696;
+  margin-left: calc(100% - 180px);
+}
+
+.user-card .btn {
+  margin-top: 20px;
+  margin-left: calc(100% - 220px);
 }

@@ -23,7 +23,9 @@
             $row = mysqli_fetch_array($result);
 
             if($row){
-                $_SESSION['idUser'] = $row;
+
+                $_SESSION['idUser'] = $row[0];
+
                 header("location: chat.php");
             }else{
                 header("location:index.php");
@@ -36,6 +38,7 @@
 <?php 
     require_once './backend/web_config.php';
     load_top();
+    ch_title("Chat cùng chúng tôi");
 ?>
 <!-- Index CSS -->
 <link href="./frontend/index.css" rel="stylesheet"> 
@@ -44,14 +47,12 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid justify-content-start">
                 <a href="#" class="navbar-brand mb-0 h1">LOGO</a>
-            </div> 
-            <form class="log-re flex-d col-sm-2">
-            </form>
+            </div>
 </nav>
 
 <div class="container">
-        <h2 id="about">Kết nối<br>với mọi người <br>thật dễ dàng</br></h2>
-        <div class="login-form col-4">
+        <h2 class="about">Kết nối<br>với mọi người. <br /> Thêm bạn thêm vui</h2>
+        <div class="login-form col-3">
             <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
                 <input id="txtUsername" name="email" class="form-control" type="text" placeholder="Nhập tài khoản"><br>
 
