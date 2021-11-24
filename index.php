@@ -4,34 +4,33 @@
         header('location: chat.php');
     }else {
             if(isset($_POST['login'])){
-            $check = [];
-            if(empty($_POST['email'])){
-                $check['emailIsEmpty'] = true;
-            }
-            if(empty($_POST['password'])){
-                $check['passwordIsEmpty'] = true;
-            }
-            require_once './backend/mysql_config.php';
-            $email = $_POST['email'];
-            $password  = md5($_POST['password']);
+            //Validation Form
+                $validation = [];
+                if(empty($_POST['email'])){
+                    $validation['EmailIsEmpty'] = true;
+                }
 
-        
-            $connect = mysqli_connect(HOSTNAME, USER, PASS, DB);
+                require_once './backend/mysql_config.php';
+                $email = $_POST['email'];
+                $password  = md5($_POST['password']);
 
-            $sql = "SELECT * FROM users WHERE Email = '$email' AND Password = '$password'";
-            $result = mysqli_query($connect, $sql);
-            $row = mysqli_fetch_array($result);
+            
+                $connect = mysqli_connect(HOSTNAME, USER, PASS, DB);
 
-            print_r($row);
+                $sql = "SELECT * FROM users WHERE Email = '$email' AND Password = '$password'";
+                $result = mysqli_query($connect, $sql);
+                $row = mysqli_fetch_array($result);
 
-            // if($row){
+                // print_r($row);
 
-            //     $_SESSION['idUser'] = $row[0];
+                if($row){
 
-            //     header("location: chat.php");
-            // }else{
-            //     header("location:index.php");
-            // }
+                    $_SESSION['idUser'] = $row[0];
+
+                    header("location: chat.php");
+                }else{
+                    header("location:index.php");
+                }
         }
     }
 
@@ -45,26 +44,24 @@
 <!-- Index CSS -->
 <link href="./frontend/index.css" rel="stylesheet"> 
 
-
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid justify-content-start">
+            <div class=" justify-content-start">
                 <a href="#" class="navbar-brand mb-0 h1">LOGO</a>
             </div>
 </nav>
+<h2 class="about">Kết nối<br>với mọi người. <br /> Thêm bạn thêm vui</h2>
 
-<div class="container">
-        <h2 class="about">Kết nối<br>với mọi người. <br /> Thêm bạn thêm vui</h2>
-        <div class="login-form col-3">
-            <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-                <input id="txtUsername" name="email" class="form-control" type="text" placeholder="Nhập tài khoản"><br>
 
-                <input id="txtPassword" name="password" class="form-control" type="password" placeholder="Nhập mật khẩu"><br>
 
-                <input  class="btnLogin btn btn-primary" type="submit" name="login" value="Đăng Nhập"><br>
-            </form>
-        </div>
-        <a href="./register.php" class="reg-link nav-link">Chưa có tài khoản? Đăng ký ngay</a>
-</div>
-
+<form class="area-form__login" method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>" autocomplete="off">
+    <div class="login-form">
+        
+        <input id="Email" name="email" class="textBoxLogin" type="text" placeholder="Nhập tài khoản">
+        
+        <input id="Password" name="password" class="textBoxLogin" type="password" placeholder="Nhập mật khẩu">   
+    </div>
+    <button class="btnLogin" type="submit" name="login">Đăng nhập</button> <br />
+    <a class="reg-link" href="./register.php">Chưa có tài khoản? Đăng ký ngay</a>
+</form>
 
 <?php load_footer(); ?>

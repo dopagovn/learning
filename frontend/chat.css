@@ -631,6 +631,7 @@ i {
   height: 100%;
 }
 
+
 .conversations .contact-list-item .fr-conv-item-avt {
   margin: auto 14px auto 0;
   width: 52px;
@@ -663,6 +664,7 @@ i {
 
 .friend-add__list {
   height: 100%;
+  width: 100%;
 }
 
 .friend-add__list .fr-conv-item-avt {
@@ -677,7 +679,7 @@ i {
   justify-content: space-between;
   box-shadow: 0px 5px 40px 0px #80ebd7;
   border-top-right-radius: 1rem;
-  width: 950px;
+  width: 100%;
 }
 .friend-add__title .tab-name {
   margin-top: 15px;
@@ -739,6 +741,21 @@ i {
   display: flexbox;
   border-radius: 1rem;
   align-items: center;
+}
+
+.user-card:hover{
+  height: 270px;
+  max-width: 250px;
+  border: 1px none;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0.3)
+  );
+  display: flexbox;
+  border-radius: 1rem;
+  align-items: center;
+  box-shadow: 0px 2px 40px 0px #80ebd7;
 }
 
 .user-card .user-avt {
