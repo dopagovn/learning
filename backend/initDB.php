@@ -11,6 +11,8 @@
     initDataConversation();
     initDataMessages();
     initDataParticipatants();
+    createTableRelationship();
+    initDataRelationshipTable();
     echo "
         <script>
             var check = alert('Khởi tạo DATABASE thành công');
