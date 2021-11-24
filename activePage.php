@@ -6,6 +6,7 @@
     else{
         require_once('backend/mysql_config.php');
         $data = getDataByQuery("SELECT Count(*) as amount FROM userActive WHERE id = {$_SESSION['idUser']}");
+        // idUser have actived already
         if($data[0]['amount'] == 0){
             header('location: index.php');
         }
