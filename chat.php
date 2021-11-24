@@ -86,26 +86,29 @@
                                 <?php
                                     $i = 0;
                                     foreach($paticipatantsInConversations as $paticipatants){
-                                        $namePaticipatants = [];
-                                        foreach($paticipatants as $paticipatant){
-                                            $query = "SELECT LastName, FirstName FROM users WHERE id = {$paticipatant['Users_Id']}";
+                                        // chat 1 vs 1
+                                        if(count($paticipatants) == 1){
+                                            $query = "SELECT LastName, FirstName FROM users WHERE id = {$paticipatants[0]['Users_Id']}";
                                             $name = getDataByQuery($query);
-                                            $namePaticipatants[] = $name[0]['LastName'] . ' ' . $name[0]['FirstName'];
-                                        }              
-                                        $namePaticipatants = implode(',', $namePaticipatants);
-                                        $view = "
-                                            <div class='conversation-item'>
-                                                <input name='idConversation' value='{$idConversations[$i]['Conversation_Id']}' style='display: none'>                                              
-                                                <img class='conversation-item__avatar' src='./frontend/img/user1.jpeg'>
-                                                <div class='conversation-item__content'>
-                                                    <p class='title'>{$namePaticipatants}</p>
-                                                    <p class='content'>Batman: Xin chào thế giới I am hero</p>
+                                            $namePaticipatant = $name[0]['LastName'] . ' ' . $name[0]['FirstName'];
+                                            $view = "
+                                                <div class='conversation-item'>
+                                                    <input name='idConversation' value='{$idConversations[$i]['Conversation_Id']}' style='display: none'>                                              
+                                                    <img class='conversation-item__avatar' src='./frontend/img/user1.jpeg'>
+                                                    <div class='conversation-item__content'>
+                                                        <p class='title'>{$namePaticipatant}</p>
+                                                        <p class='content'>Loading...</p>
+                                                    </div>
+                                                    <div class='conversation-item__time'>Loading...</div>
                                                 </div>
-                                                <div class='conversation-item__time'>23 giờ</div>
-                                            </div>
-                                            ";
-                                        echo $view;
-                                        $i++;
+                                                ";
+                                            echo $view;
+                                            $i++;
+                                        }
+                                        // chat group
+                                        else{
+
+                                        }                                        
                                     }
                                 ?>
                             </div>
@@ -276,12 +279,6 @@
                             <button class="btn btn-outline-primary">Hủy</button>
                         </div>
                          <div class="user-card">
-                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
-                            <span class="name-user">Bruce Wayne</span> <br />
-                            <button class="btn btn-primary">Chấp nhận</button>
-                            <button class="btn btn-outline-primary">Hủy</button>
-                        </div>
-                        <div class="user-card">
                             <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
                             <span class="name-user">Bruce Wayne</span> <br />
                             <button class="btn btn-primary">Chấp nhận</button>

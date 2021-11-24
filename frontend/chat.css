@@ -724,6 +724,7 @@ i {
   overflow: scroll;
   overflow-x: hidden;
   margin-bottom: 10px;
+  max-height: 100%;
 }
 
 /* width */

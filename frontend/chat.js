@@ -111,14 +111,14 @@ setInterval(() => {
 // Ajax
 // Conversation Click
 const conversationElements = document.querySelectorAll('.list-conversation .conversations .conversations__main .conversation-item');
+const contentConversationElements = document.querySelectorAll('.conversation-item .conversation-item__content > .content');
+const timeConversationElements = document.querySelectorAll('.conversation-item .conversation-item__time');
 const introElement = document.querySelector('.chat-area__intro');
 const chatmainElement = document.querySelector('.chat-area__main');
 const areaMessageElement = document.querySelector('.chat-area__main .area-message');
 const areaInfoElement = document.querySelector('.chat-area__main .partner-info');
-const contentConversationElements = document.querySelectorAll('.conversation-item .conversation-item__content > .content');
-const timeConversationElements = document.querySelectorAll('.conversation-item .conversation-item__time');
 
-var messages;
+var conversations;
 var currentConversation = -1;
 var beforeMessages;
 
@@ -126,12 +126,14 @@ setInterval(() => {
     var ajax = new XMLHttpRequest();
     ajax.open('POST', 'messages.php', true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    ajax.send(`CheckConversation=true`);
+    ajax.send(`ReloadMessages=true`);
     ajax.onload = () => {
-        messages = JSON.parse(ajax.responseText);
+        conversations = JSON.parse(ajax.responseText);
+        // reload conversations
         contentConversationElements.forEach((e, idx) => {
             let mes = document.createElement('div');        
-            mes.innerHTML = messages[idx];
+            mes.innerHTML = conversations[idx];
+            // get last message
             let name = mes.querySelector('.area-message__message:last-child .content .content__name');
             let content = mes.querySelector('.area-message__message:last-child .content .content__message');
             let time = mes.querySelector('.area-message__message:last-child .content .content__time');
@@ -144,6 +146,8 @@ setInterval(() => {
                 timeConversationElements[idx].textContent = '';
             }
         });
+
+        // reload messages of conversationChosen
         if(currentConversation != -1){
             if(messageAreaElement){
                 let lastMessage = conversationElements[currentConversation].querySelector('.conversation-item__content > .content').textContent;
@@ -151,12 +155,12 @@ setInterval(() => {
                     beforeMessages = lastMessage;
                 }
                 else if(beforeMessages != lastMessage){
-                    areaMessageElement.innerHTML = messages[currentConversation];
+                    areaMessageElement.innerHTML = conversations[currentConversation];
                     beforeMessages = lastMessage;
                     messageAreaElement.scrollTop = 100000;
                 }
             }
-        }      
+        }
     }
 }, 1000);
 
@@ -165,7 +169,7 @@ conversationElements.forEach((e, idx) => {
     e.addEventListener('click', () => {
         introElement.style.display = 'none';
         chatmainElement.style.display = 'flex';
-        areaMessageElement.innerHTML = messages[idx];
+        areaMessageElement.innerHTML = conversations[idx];
 
         const namePaticipantElement = document.querySelector('.chat-area__main .partner-info .info .info__content > .name');
         namePaticipantElement.textContent = e.querySelector('.conversation-item__content > .title').textContent;
@@ -178,7 +182,9 @@ conversationElements.forEach((e, idx) => {
         let ajax = new XMLHttpRequest();
         ajax.open('POST', 'messages.php');
         ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        ajax.send('ConversationChosen=' + e.querySelector("input[name='idConversation']").value);
+        ajax.send('ChooseConversation=' + e.querySelector("input[name='idConversation']").value);
+
+        getStatus();
     });
 });
 
@@ -200,12 +206,43 @@ inputChatElement.addEventListener('keydown', (e) => {
     }
 });
 
+//online ajax
+setInterval(() => {
+    let ajax = new XMLHttpRequest;
+    ajax.open('POST', 'online.php');
+    ajax.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+    ajax.send('updateOnline=true');
+}, 1000);
 
-// const friendsElenment = document.querySelector('#Friends');
+// reload status paticipant
 
-// window.addEventListener('load', () => {
-//     friendsElenment.style.maxHeight = window.innerHeight - (window.innerHeight * 0.09) + 'px';
-// });
-// window.addEventListener('resize', () => {
-//     friendsElenment.style.maxHeight = window.innerHeight - (window.innerHeight * 0.09) + 'px';
-// });
+function getStatus(){
+    const timePaticipantElement = document.querySelector('.chat-area__main .partner-info .info .info__content > .time');
+    let ajax = new XMLHttpRequest();
+    ajax.open('POST', 'online.php');
+    ajax.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+    ajax.send('getStatusParticipant=true');
+    ajax.onload = () => {
+        let status = ajax.responseText;
+        timePaticipantElement.textContent = status;
+        const statusElement = document.querySelector('.chat-area__main .partner-info .info .info__status > span');
+        if(status == 'Online'){
+            statusElement.style.backgroundColor = '#00a170';          
+        }
+        else{
+            statusElement.style.backgroundColor = 'gray';
+        }
+    }
+}
+
+setInterval(getStatus, 1000);
+
+const friendElement = document.querySelector('#Friends');
+        
+
+window.addEventListener('load', () => {
+    friendElement.style.maxHeight = window.innerHeight - (window.innerHeight * 0.09) + 'px';
+});
+window.addEventListener('resize', () => {
+    friendElement.style.maxHeight = window.innerHeight - (window.innerHeight * 0.09) + 'px';
+});
