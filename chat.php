@@ -275,6 +275,48 @@
                             <button class="btn btn-primary">Chấp nhận</button>
                             <button class="btn btn-outline-primary">Hủy</button>
                         </div>
+                         <div class="user-card">
+                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
+                            <span class="name-user">Bruce Wayne</span> <br />
+                            <button class="btn btn-primary">Chấp nhận</button>
+                            <button class="btn btn-outline-primary">Hủy</button>
+                        </div>
+                        <div class="user-card">
+                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
+                            <span class="name-user">Bruce Wayne</span> <br />
+                            <button class="btn btn-primary">Chấp nhận</button>
+                            <button class="btn btn-outline-primary">Hủy</button>
+                        </div>
+                        <div class="user-card">
+                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
+                            <span class="name-user">Bruce Wayne</span> <br />
+                            <button class="btn btn-primary">Chấp nhận</button>
+                            <button class="btn btn-outline-primary">Hủy</button>
+                        </div>
+                        <div class="user-card">
+                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
+                            <span class="name-user">Bruce Wayne</span> <br />
+                            <button class="btn btn-primary">Chấp nhận</button>
+                            <button class="btn btn-outline-primary">Hủy</button>
+                        </div>
+                        <div class="user-card">
+                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
+                            <span class="name-user">Bruce Wayne</span> <br />
+                            <button class="btn btn-primary">Chấp nhận</button>
+                            <button class="btn btn-outline-primary">Hủy</button>
+                        </div>
+                        <div class="user-card">
+                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
+                            <span class="name-user">Bruce Wayne</span> <br />
+                            <button class="btn btn-primary">Chấp nhận</button>
+                            <button class="btn btn-outline-primary">Hủy</button>
+                        </div>
+                        <div class="user-card">
+                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
+                            <span class="name-user">Bruce Wayne</span> <br />
+                            <button class="btn btn-primary">Chấp nhận</button>
+                            <button class="btn btn-outline-primary">Hủy</button>
+                        </div>
                     </div>
                 </div>  
              </div>

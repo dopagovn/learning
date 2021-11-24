@@ -201,11 +201,11 @@ inputChatElement.addEventListener('keydown', (e) => {
 });
 
 
-const friendsElenment = document.querySelector('#Friends');
+// const friendsElenment = document.querySelector('#Friends');
 
-window.addEventListener('load', () => {
-    friendsElenment.style.maxHeight = window.innerHeight - (window.innerHeight * 0.09) + 'px';
-});
-window.addEventListener('resize', () => {
-    friendsElenment.style.maxHeight = window.innerHeight - (window.innerHeight * 0.09) + 'px';
-});
+// window.addEventListener('load', () => {
+//     friendsElenment.style.maxHeight = window.innerHeight - (window.innerHeight * 0.09) + 'px';
+// });
+// window.addEventListener('resize', () => {
+//     friendsElenment.style.maxHeight = window.innerHeight - (window.innerHeight * 0.09) + 'px';
+// });
