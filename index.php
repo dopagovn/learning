@@ -22,14 +22,16 @@
             $result = mysqli_query($connect, $sql);
             $row = mysqli_fetch_array($result);
 
-            if($row){
+            print_r($row);
 
-                $_SESSION['idUser'] = $row[0];
+            // if($row){
 
-                header("location: chat.php");
-            }else{
-                header("location:index.php");
-            }
+            //     $_SESSION['idUser'] = $row[0];
+
+            //     header("location: chat.php");
+            // }else{
+            //     header("location:index.php");
+            // }
         }
     }
 

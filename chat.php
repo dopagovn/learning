@@ -253,7 +253,7 @@
                     </div>
                 <div class="friend-add__list">
                     <div class="friend-add__title">
-                        <h4 class="tab-name">Danh sách kết bạn</h4>
+                        <h4 class="tab-name">Danh sách kết bạn <span style="color: green;">(3)</span></h4>
                         <img src="./frontend/img/list-user-add.png" class="fr-conv-item-avt">
                     </div>                   
                     <div class="area-add">
