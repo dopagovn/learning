@@ -177,8 +177,8 @@
         if(file_exists($avatarUserDir . '.png')){
             $avatarUserDir .= '.png';
         }
-        else if(file_exists($avatarUserDir . '.jpge')){
-            $avatarUserDir .= '.jpge';
+        else if(file_exists($avatarUserDir . '.jpeg')){
+            $avatarUserDir .= '.jpeg';
         }
         else if(file_exists($avatarUserDir . '.jpg')){
             $avatarUserDir .= '.jpg';

@@ -15,7 +15,7 @@
             $imageExt = explode('.',$imageName);
             $imageExt = $imageExt[array_key_last($imageExt)];
             $imageExt = strtolower($imageExt);
-            $allowExt = ['','png','jpge','jpg','ico'];
+            $allowExt = ['','png','jpeg','jpg','ico'];
 
             $result = array_search($imageExt, $allowExt);
             if($result){
