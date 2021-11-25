@@ -111,7 +111,7 @@
             }
             else if(isset($validations['activeCodeIsValid'])){
                 echo "<script> alert('Kích hoạt thành công'); 
-                    document.location = './';
+                    document.location = './choiceAvatar.php';
                 </script>";
             }
         ?>

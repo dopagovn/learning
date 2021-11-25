@@ -469,6 +469,7 @@ i {
   background-color: #65dfc9;
   padding: 5px 10px;
   border-radius: 5px;
+  max-width: 500px;
 }
 .chat-area__main
   .area-message
@@ -622,22 +623,165 @@ i {
 }
 
 /* friends area */
-.friends-main .list-conversation {
-  padding: 15px 0px;
-  max-width: 285px;
-  min-width: 285px;
+#Friends {
 }
 
-.friends-main .list-conversation .search-bar {
-  background-color: white;
-  border-radius: 20px;
-  opacity: 0.9;
-  padding: 0px 10px;
-  margin: 0px 10px;
+.friend-main {
+  display: flex;
+  height: 100%;
 }
 
-.friends-main .list-conversation input {
-  background-color: white;
-  border-radius: 20px;
-  border: none;
+.conversations .contact-list-item .fr-conv-item-avt {
+  margin: auto 14px auto 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 10%;
+}
+
+.contact-list-item {
+  display: flex;
+  margin: auto;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.contact-list-item p {
+  justify-content: center;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.contact-list-item:hover {
+  display: flex;
+  margin: auto;
+  bottom: auto;
+  cursor: pointer;
+  background: linear-gradient(to right top, #70e7d1, #6cdbeb);
+  color: black;
+  transition: all 0.1s;
+  border-radius: 5px;
+}
+
+.friend-add__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.friend-add__list .fr-conv-item-avt {
+  border-radius: 10%;
+  width: 48px;
+  height: 48px;
+  margin-right: 11px;
+}
+
+.friend-add__title {
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0px 5px 40px 0px #80ebd7;
+  border-top-right-radius: 1rem;
+}
+.friend-add__title .tab-name {
+  margin-top: 15px;
+  text-align: center;
+  font-weight: 600px;
+  color: #658ec6;
+}
+
+.card-item {
+  background-color: #65dfc9;
+  height: 285px;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  border-style: solid;
+  border-color: #65dfc9;
+  border-radius: 10px;
+}
+
+.card-item .avatar-img {
+  margin-top: 3px;
+  width: 50px;
+  height: 150px;
+  border-radius: 5rem;
+}
+
+.card-item__body .btn {
+  margin-top: 30px;
+  margin-left: 40px;
+}
+
+.card-item__body .card-title {
+  margin-top: 10px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+/*area Add Friends */
+
+.area-add {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow: scroll;
+  overflow-x: hidden;
+  margin-bottom: 10px;
+  max-height: 100%;
+}
+
+/* width */
+.area-add::-webkit-scrollbar {
+  width: 5px;
+  display: flex;
+  transform: translateY(-10px);
+}
+/* Track */
+.area-add::-webkit-scrollbar-track {
+  background: rgb(188, 239, 242);
+  border-radius: 2.5px;
+}
+
+/* Handle */
+.area-add::-webkit-scrollbar-thumb {
+  background: rgb(95, 220, 226);
+  border-radius: 2.5px;
+}
+
+/* Handle on hover */
+.area-add::-webkit-scrollbar-thumb:hover {
+  overflow: auto;
+  background: rgb(65, 175, 180);
+}
+
+.user-card {
+  height: 270px;
+  max-width: 250px;
+  border: 1px none;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0.5)
+  );
+  display: flexbox;
+  border-radius: 1rem;
+  align-items: center;
+  margin: 31.5px;
+}
+
+.user-card .user-avt {
+  width: 250px;
+  height: 166.84px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.user-card .name-user {
+  font-size: 17px;
+  font-weight: 700;
+  justify-content: center;
+  color: #426696;
+  margin-left: calc(100% - 180px);
+}
+
+.user-card .btn {
+  margin-top: 20px;
+  margin-left: calc(100% - 220px);
 }

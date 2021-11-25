@@ -1,0 +1,71 @@
+*{
+    /* reset */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#bg-banhchung{
+    display: flex;
+    justify-content: center;
+}
+#bg-banhchung > img{
+    max-width: 350px;
+}
+#avatar{
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+#avatar > img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+#avatar .btn-camera{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    top: calc(50% - 55px);
+    left: calc(50% + 25px);
+}
+#avatar .btn-camera:hover{
+    cursor: pointer;
+    opacity: .7;
+    transition: .7s all;
+}
+#avatar .btn-camera > i{
+    font-size: 22px;
+    color: rgb(165, 165, 165);
+}
+#avatar .btn-camera > input {
+    visibility: hidden;
+}
+#name > p{
+    font-size: 20px;
+    font-weight: 450px;
+    text-align: center;
+    transform: translateY(-65px);
+}
+#start{
+    display: flex;
+    justify-content: center;
+}
+#start > input[type='submit']{
+    border: 1px solid #0d6efd;
+    padding: 15px 75px;
+    border-radius: 30px;
+    background-color: rgb(255, 255, 255);
+    font-size: 18px;
+    color: #0d6efd;
+    cursor: pointer;
+}
+#start > input[type='submit']:hover{
+    background-color: #0d6efd;
+    color: white;
+    transition: all .3s;
+}
+
+

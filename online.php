@@ -55,10 +55,13 @@
                                 $d = $now->format('d') - $date->format('d');
                                 if($d == 1){
                                     $g = $now->format('H') - $date->format('H');
-                                    if($g < 0){
-                                        $g = 24 - ($date->format('H') - $now->format('H'));
+                                    $g = 24 - ($date->format('H') - $now->format('H'));
+                                    if($g >= 24){
+                                        echo "Online {$d} ngày trước";
                                     }
-                                    echo "Online {$g} giờ trước";
+                                    else{
+                                        echo "Online {$g} giờ trước";
+                                    }
                                 }
                                 else{
                                     echo "Online {$d} ngày trước";

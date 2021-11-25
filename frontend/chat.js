@@ -19,9 +19,10 @@ const glassElement = document.querySelector('.glass');
 const dashboardElement = document.querySelector('.dashboard');
 const listConversationElement = document.querySelector('.list-conversation');
 
-const slideBarElement = document.querySelector('.chat-area__intro .slider-bar');
+const slideBarElement = document.querySelector('.chat-area__intro .slider-bar ');
 const slideElements = document.querySelectorAll('.slider-bar .slider-bar__slides > .slide');
 const inputSlideElements = document.querySelectorAll('.slider-bar .slider-bar__slides > input[name="slidebar"]');
+
 
 function checkExist(){
     if(listConversationElement && slideBarElement && slideElements && inputSlideElements){
@@ -40,6 +41,8 @@ function setWidthOfSlides(){
     slideElements.forEach((e) => {
         e.style.minWidth = widthSlide + 'px';
     });
+
+
 }
 
 window.addEventListener('load', setWidthOfSlides);
@@ -73,12 +76,14 @@ window.addEventListener('resize', () => {
     chatElement.style.maxHeight = window.innerHeight - (window.innerHeight * 0.09) + 'px';
 });
 
+
 const messageAreaElement = document.querySelector('.chat-area__main .area-message');  
 
 const inputChatElement = document.querySelector('.chat-area__main .area-send .area-send__input > input');
 
 function choiceFastChat(){
     if(messageAreaElement){
+
         const fastChatElements = document.querySelectorAll('.chat-area__main .area-send .area-send__toolbar > .fast-menu > .fast-menu__main > p');
         fastChatElements.forEach((e) => {
             e.addEventListener('click', () => {
@@ -87,6 +92,7 @@ function choiceFastChat(){
         });
     }
 }
+
 window.addEventListener('load', choiceFastChat);
 
 const iconEnterChatElement = document.querySelector('.chat-area__main .area-send .area-send__input .symbol-bar > i:first-child');
@@ -231,5 +237,12 @@ function getStatus(){
 
 setInterval(getStatus, 1000);
 
+const friendElement = document.querySelector('#Friends');
         
 
+window.addEventListener('load', () => {
+    friendElement.style.maxHeight = window.innerHeight - (window.innerHeight * 0.09) + 'px';
+});
+window.addEventListener('resize', () => {
+    friendElement.style.maxHeight = window.innerHeight - (window.innerHeight * 0.09) + 'px';
+});

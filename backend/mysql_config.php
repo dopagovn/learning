@@ -43,6 +43,7 @@
         $result = mysqli_multi_query($connect, $query);
         mysqli_close($connect);
     }
+
     function createTableUserActive(){
         $connect = mysqli_connect(HOSTNAME, USER, PASS, DB);
         $query = 'CREATE TABLE IF NOT EXISTS UserActive (
@@ -169,6 +170,49 @@
     function excuteQuery($query){
         $connect = mysqli_connect(HOSTNAME, USER, PASS, DB);
         $result = mysqli_query($connect ,$query);
+        mysqli_close($connect);
+    }
+    function getAvatarById($idUser){
+        $avatarUserDir = 'backend/avatar/' . $idUser;
+        if(file_exists($avatarUserDir . '.png')){
+            $avatarUserDir .= '.png';
+        }
+        else if(file_exists($avatarUserDir . '.jpge')){
+            $avatarUserDir .= '.jpge';
+        }
+        else if(file_exists($avatarUserDir . '.jpg')){
+            $avatarUserDir .= '.jpg';
+        }
+        else if(file_exists($avatarUserDir . '.ico')){
+            $avatarUserDir .= '.ico';
+        }
+        else{
+            $avatarUserDir = 'frontend/img/user1.jpeg';
+        }
+        return $avatarUserDir;
+    }
+
+    // relationship table
+    function createTableRelationship(){
+        $connect = mysqli_connect(HOSTNAME, USER, PASS, DB);
+        $query   =  "CREATE TABLE IF NOT EXISTS relations(
+                    `from` int(20) NOT NULL,
+                    `to` int(20) NOT NULL,
+                    `status` varchar(1) NOT NULL,
+                    `since` datetime NOT NULL DEFAULT current_timestamp()
+                    );
+                    ALTER TABLE `relations` ADD PRIMARY KEY (`from`,`to`,`status`), ADD KEY `since` (`since`);";
+        mysqli_multi_query($connect, $query);
+        mysqli_close($connect);
+    }
+    function initDataRelationshipTable(){
+        $connect = mysqli_connect(HOSTNAME, USER, PASS, DB);
+        $query   = "
+                    INSERT INTO `relations` (`from`, `to` , `status`) VALUES
+                    (1, 2, 'P'),
+                    (3, 1, 'P')
+                    ";
+        mysqli_query($connect, $query);
         mysqli_close($connect);
     }
 ?>
