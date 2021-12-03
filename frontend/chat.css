@@ -515,7 +515,7 @@ i {
 .chat-area__main .area-send .area-send__toolbar > i:hover {
   background-color: #34b19a;
   color: white;
-  transition: all 0.7s;
+  transition: all 0.1s;
 }
 .chat-area__main .area-send .area-send__input {
   display: flex;
@@ -546,7 +546,7 @@ i {
 .chat-area__main .area-send .area-send__input > .symbol-bar > i:hover {
   background-color: #34b19a;
   color: white;
-  transition: all 0.7s;
+  transition: all 0.1s;
 }
 .chat-area__main .area-send .area-send__toolbar > .fast-menu {
   position: relative;
@@ -566,7 +566,7 @@ i {
   > .fast-menu__main {
   display: flex;
   animation-name: ani;
-  animation-duration: 0.8s;
+  animation-duration: 0.3s;
   animation-timing-function: ease-in-out;
 }
 .chat-area__main
