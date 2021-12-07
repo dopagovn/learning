@@ -11,6 +11,9 @@
         $nameUserTable = getDataByQuery($query);
         $nameUser = $nameUserTable[0]['LastName'] . ' ' . $nameUserTable[0]['FirstName'];
 
+        // get avatar user
+        $avatarUserDir = getAvatarById($idUser);
+
         // get id_conversations participated
         $query = "SELECT Conversation_Id FROM participatants WHERE Users_Id = $idUser";
         $idConversations = getDataByQuery($query);
@@ -39,7 +42,8 @@
     <main>
          <section class='glass'>
              <div class="dashboard">
-                 <img src="./frontend/img/user1.jpeg" alt="">
+                 <!-- avatar -->
+                 <img src="<?php echo $avatarUserDir; ?>" alt="">
                  <h3><?php echo $nameUser; ?></h3>
                      <div class="links">
                         <a href="#" onclick="openTab( event , 'Chat')"><span class="material-icons">
@@ -91,10 +95,11 @@
                                             $query = "SELECT LastName, FirstName FROM users WHERE id = {$paticipatants[0]['Users_Id']}";
                                             $name = getDataByQuery($query);
                                             $namePaticipatant = $name[0]['LastName'] . ' ' . $name[0]['FirstName'];
+                                            $avatarPaticipant = getAvatarById($paticipatants[0]['Users_Id']);
                                             $view = "
                                                 <div class='conversation-item'>
                                                     <input name='idConversation' value='{$idConversations[$i]['Conversation_Id']}' style='display: none'>                                              
-                                                    <img class='conversation-item__avatar' src='./frontend/img/user1.jpeg'>
+                                                    <img class='conversation-item__avatar' src='{$avatarPaticipant}'>
                                                     <div class='conversation-item__content'>
                                                         <p class='title'>{$namePaticipatant}</p>
                                                         <p class='content'>Loading...</p>
@@ -225,32 +230,19 @@
                             <input placeholder="Tìm kiếm">
                         </div>
                         <div class="conversations">
-                             <div class="contact-list-item">
+                             <div class="contact-list-item active">
                                     <img src="./frontend/img/list-user-add.png" class="fr-conv-item-avt">
                                     <p>Danh sách kết bạn</p>
+                                </div>
+                                <div class="contact-list-item">
+                                    <img src="./frontend/img/group-list.png" class="fr-conv-item-avt">
+                                    <p>Danh sách nhóm</p>
                                 </div>
                             <div class="conversations__title">
                                 <span>Danh sách bạn bè (3)<i class="fas fa-chevron-down" style="margin-left: 5px;"></i></span>                               
                             </div>
                             <div class="conversations__main">
-                                <div class="conversation-item">
-                                    <img class="conversation-item__avatar" src="./frontend/img/user1.jpeg">
-                                    <div class="conversation-item__content">
-                                        <p class="title">Nguyễn Văn</p>
-                                    </div>
-                                </div>
-                                <div class="conversation-item">
-                                    <img class="conversation-item__avatar" src="./frontend/img/user1.jpeg">
-                                    <div class="conversation-item__content">
-                                        <p class="title">Trần Huy</p>
-                                    </div>
-                                </div>
-                                <div class="conversation-item">
-                                    <img class="conversation-item__avatar" src="./frontend/img/user1.jpeg">
-                                    <div class="conversation-item__content">
-                                        <p class="title">Mỹ Tâm</p>
-                                    </div>
-                                </div>
+                               
                             </div>
                         </div>
                     </div>
@@ -278,45 +270,67 @@
                             <button class="btn btn-primary">Chấp nhận</button>
                             <button class="btn btn-outline-primary">Hủy</button>
                         </div>
-                         <div class="user-card">
-                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
-                            <span class="name-user">Bruce Wayne</span> <br />
-                            <button class="btn btn-primary">Chấp nhận</button>
-                            <button class="btn btn-outline-primary">Hủy</button>
-                        </div>
-                        <div class="user-card">
-                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
-                            <span class="name-user">Bruce Wayne</span> <br />
-                            <button class="btn btn-primary">Chấp nhận</button>
-                            <button class="btn btn-outline-primary">Hủy</button>
-                        </div>
-                        <div class="user-card">
-                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
-                            <span class="name-user">Bruce Wayne</span> <br />
-                            <button class="btn btn-primary">Chấp nhận</button>
-                            <button class="btn btn-outline-primary">Hủy</button>
-                        </div>
-                        <div class="user-card">
-                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
-                            <span class="name-user">Bruce Wayne</span> <br />
-                            <button class="btn btn-primary">Chấp nhận</button>
-                            <button class="btn btn-outline-primary">Hủy</button>
-                        </div>
-                        <div class="user-card">
-                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
-                            <span class="name-user">Bruce Wayne</span> <br />
-                            <button class="btn btn-primary">Chấp nhận</button>
-                            <button class="btn btn-outline-primary">Hủy</button>
-                        </div>
-                        <div class="user-card">
-                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
-                            <span class="name-user">Bruce Wayne</span> <br />
-                            <button class="btn btn-primary">Chấp nhận</button>
-                            <button class="btn btn-outline-primary">Hủy</button>
-                        </div>
                     </div>
                 </div>  
              </div>
+              <!-- <div class="friend-add__list">
+                    <div class="friend-add__title">
+                        <h4 class="tab-name">Danh sách nhóm <span style="color: green;">(3)</span></h4>
+                        <img src="./frontend/img/list-user-add.png" class="fr-conv-item-avt">
+                    </div>                   
+                    <div class="area-add">
+                        <div class="user-card">
+                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
+                            <span class="name-user">Bruce Wayne</span> <br />
+                            <button class="btn btn-primary">Chấp nhận</button>
+                            <button class="btn btn-outline-primary">Hủy</button>
+                        </div>
+                        <div class="user-card">
+                            <img class="user-avt" src="./frontend/img/user3.jpg" alt=""> <br/>
+                            <span class="name-user">Diana Prince</span> <br />
+                            <button class="btn btn-primary">Chấp nhận</button>
+                            <button class="btn btn-outline-primary">Hủy</button>
+                        </div>
+                        <div class="user-card">
+                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
+                            <span class="name-user">Bruce Wayne</span> <br />
+                            <button class="btn btn-primary">Chấp nhận</button>
+                            <button class="btn btn-outline-primary">Hủy</button>
+                        </div>
+                        <div class="user-card">
+                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
+                            <span class="name-user">Bruce Wayne</span> <br />
+                            <button class="btn btn-primary">Chấp nhận</button>
+                            <button class="btn btn-outline-primary">Hủy</button>
+                        </div>
+                        <div class="user-card">
+                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
+                            <span class="name-user">Bruce Wayne</span> <br />
+                            <button class="btn btn-primary">Chấp nhận</button>
+                            <button class="btn btn-outline-primary">Hủy</button>
+                        </div>
+                        <div class="user-card">
+                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
+                            <span class="name-user">Bruce Wayne</span> <br />
+                            <button class="btn btn-primary">Chấp nhận</button>
+                            <button class="btn btn-outline-primary">Hủy</button>
+                        </div>
+                        <div class="user-card">
+                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
+                            <span class="name-user">Bruce Wayne</span> <br />
+                            <button class="btn btn-primary">Chấp nhận</button>
+                            <button class="btn btn-outline-primary">Hủy</button>
+                        </div>
+                        <div class="user-card">
+                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
+                            <span class="name-user">Bruce Wayne</span> <br />
+                            <button class="btn btn-primary">Chấp nhận</button>
+                            <button class="btn btn-outline-primary">Hủy</button>
+                        </div>
+                       
+                    </div>
+                </div>  
+             </div> -->
              <!-- <div id="Settings" class="tabcontent">
                  Cài đặt
              </div> -->

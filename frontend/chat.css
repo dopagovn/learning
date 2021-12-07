@@ -644,6 +644,7 @@ i {
   padding-bottom: 10px;
   padding-top: 10px;
 }
+
 .contact-list-item p {
   justify-content: center;
   text-align: center;
@@ -655,15 +656,26 @@ i {
   margin: auto;
   bottom: auto;
   cursor: pointer;
-  background: linear-gradient(to right top, #70e7d1, #6cdbeb);
+  background: linear-gradient(to right top, #69f7d8, #5eeaff);
   color: black;
   transition: all 0.1s;
-  border-radius: 5px;
+  border-radius: 10px;
+}
+.active {
+  display: flex;
+  margin: auto;
+  bottom: auto;
+  cursor: pointer;
+  background: linear-gradient(to right top, #69f7d8, #5eeaff);
+  color: black;
+  transition: all 0.1s;
+  border-radius: 10px;
 }
 
 .friend-add__list {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .friend-add__list .fr-conv-item-avt {
@@ -671,6 +683,7 @@ i {
   width: 48px;
   height: 48px;
   margin-right: 11px;
+  opacity: 0.5;
 }
 
 .friend-add__title {
@@ -725,6 +738,7 @@ i {
   overflow-x: hidden;
   margin-bottom: 10px;
   max-height: 100%;
+  max-width: 100%;
 }
 
 /* width */

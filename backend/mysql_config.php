@@ -172,6 +172,26 @@
         $result = mysqli_query($connect ,$query);
         mysqli_close($connect);
     }
+    function getAvatarById($idUser){
+        $avatarUserDir = 'backend/avatar/' . $idUser;
+        if(file_exists($avatarUserDir . '.png')){
+            $avatarUserDir .= '.png';
+        }
+        else if(file_exists($avatarUserDir . '.jpeg')){
+            $avatarUserDir .= '.jpeg';
+        }
+        else if(file_exists($avatarUserDir . '.jpg')){
+            $avatarUserDir .= '.jpg';
+        }
+        else if(file_exists($avatarUserDir . '.ico')){
+            $avatarUserDir .= '.ico';
+        }
+        else{
+            $avatarUserDir = 'frontend/img/user1.jpeg';
+        }
+        return $avatarUserDir;
+    }
+
     // relationship table
     function createTableRelationship(){
         $connect = mysqli_connect(HOSTNAME, USER, PASS, DB);

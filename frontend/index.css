@@ -1,14 +1,12 @@
-*{
+* {
   margin: 0;
   padding: 0;
-
 }
-
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .about {
@@ -27,8 +25,7 @@ body {
   margin-left: 200px;
 }
 
-
-.area-form__login{
+.area-form__login {
   transform: translateY(50%);
   margin-top: 6rem;
   width: 300px;
@@ -36,12 +33,12 @@ body {
   margin: 200px 15rem 0;
 }
 
-.area-form__login .login-form{
-  margin:  3px;
+.area-form__login .login-form {
+  margin: 3px;
   width: 250px;
 }
 
-.textBoxLogin{
+.textBoxLogin {
   font-weight: 300;
   padding: 12px 25px;
   margin: 15px;
@@ -58,28 +55,28 @@ body {
   transition: 0.3s;
 }
 
-.textBoxLogin[type=text]:focus{
+.textBoxLogin[type="text"]:focus {
   border: none;
   box-shadow: 3px 5px 10px 2px #80ebd7;
   margin-left: 3px;
   background-color: white;
 }
 
-.textBoxLogin[type=password]:focus{
+.textBoxLogin[type="password"]:focus {
   border: none;
   box-shadow: 3px 5px 10px 2px #80ebd7;
   margin-left: 3px;
   background-color: white;
 }
 
-.area-form__login .btnLogin{
+.area-form__login .btnLogin {
   border: none;
   width: 130px;
   height: 50px;
   margin-top: 40px;
   margin-left: 10px;
   border-radius: 20px;
-  color:black;
+  color: black;
   background-color: #6effe8;
   font-size: 17px;
   font-weight: 700;
@@ -87,7 +84,7 @@ body {
   box-shadow: 3px 5px 10px 0px #888888;
   margin-bottom: 50px;
 }
-.area-form__login .btnLogin:hover{
+.area-form__login .btnLogin:hover {
   border: none;
   width: 130px;
   height: 50px;
@@ -99,19 +96,19 @@ body {
   font-weight: 700;
 }
 
-.area-form__login .reg-link{
+.area-form__login .reg-link {
   text-decoration: none;
   font-weight: 600;
   letter-spacing: 1px;
 }
 
-.area-form__login .reg-link:hover{
+.area-form__login .reg-link:hover {
   text-decoration: none;
   font-weight: 600;
   letter-spacing: 1px;
   color: royalblue;
 }
 
-.area-form__login .error{
+.area-form__login .error {
   padding-left: 300px;
 }

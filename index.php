@@ -5,10 +5,10 @@
     }else {
             if(isset($_POST['login'])){
             //Validation Form
-                // $validation = [];
-                // if(empty($_POST['email'])){
-                //     $validation['EmailIsEmpty'] = true;
-                // }
+                $validation = [];
+                if(empty($_POST['email'])){
+                    $validation['EmailIsEmpty'] = true;
+                }
 
                 require_once './backend/mysql_config.php';
                 $email = $_POST['email'];
