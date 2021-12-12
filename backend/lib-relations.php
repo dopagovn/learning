@@ -6,10 +6,12 @@
 
             $query = "SELECT * FROM `users` WHERE Email = '$email' ";
             $result = mysqli_query($connect , $query);
-
             $array = mysqli_fetch_assoc($result);
-            
             $array['BirthDay'] = date("d-m-Y", strtotime($array['BirthDay']));
+
+            if(isset($array['Email']) == null){
+                echo "Không có ai cả";
+            }else{
             echo "<table>
                 <tr>
                     <th>ID</th>
@@ -30,6 +32,7 @@
                     ."<td>".$array['Phone']."</td>
                 </tr>
             </table>";
+            }
         }
 
     function checkRelations($from, $to){

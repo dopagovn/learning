@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link type=”image/x-icon” href='./frontend/img/favicon.ico' rel="shortcut icon"/>
 
+    <script src="./frontend/jquery.min.js"></script>
 </head>
 <body>
         

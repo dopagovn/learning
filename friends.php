@@ -1,45 +1,64 @@
 <?php 
     require_once("./backend/lib-relations.php");
+    require_once("./backend/web_config.php");
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bạn bè</title>
-    <style>
-        table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-        }
+<?php 
+    load_top(); 
+    ch_title("Tìm bạn bè")
+?>
 
-        td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-        }
+<script src="./frontend/friends.js"></script>
+<link rel="stylesheet" href="./frontend/chat.css">
 
-        tr:nth-child(even) {
-        background-color: #dddddd;
-        }
-    </style>
-</head>
+<link rel="stylesheet" href="./frontend/friends.css">
 <body>
-    <h1>Tìm kiếm</h1>
-    <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
-    <input name="txtSearch" type="text" placeholder="Nhập Email cần tìm kiếm">
-    <button name="btnSearch" type="submit">Tìm kiếm</button>
-    </form>
-
-    <?php 
-    if(isset($_POST['btnSearch'])){
-        $txtSearch = $_POST['txtSearch'];
-        finduser($txtSearch);
-    }
-    ?>
+        <h1 align="center">Tìm kiếm</h1>
     
-</body>
-</html>
+        <form align="center" method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+            <input name="txtSearch" id="input-data" class="input-data form-control" type="text" placeholder="Nhập Email cần tìm kiếm">
+        </form>
+    
+       <table align="center" class="table table-hover table-bordered ">
+            <thead>
+                <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Tên</th>
+                <th scope="col">Họ</th>
+                <th scope="col">Giới tính</th>
+                </tr>
+            </thead>
+            <tbody class="list">
+                <?php 
+                    $connect = mysqli_connect(HOSTNAME, USER, PASS, DB);
+                    $sql = "SELECT * FROM users";
+                    $query = mysqli_query($connect, $sql);
+                    $num = mysqli_num_rows($query);
+
+                    if($num > 0){
+                        while($row = mysqli_fetch_array($query)){
+
+                            if($row['Gender'] == 1)
+                                $row['Gender'] = "Nam";
+                                else{
+                                    $row['Gender'] = "Nữ";
+                                }
+                        
+                ?>
+                <!-- <tr>
+                    <th scope="row"><?php echo $row['id'];?></th>
+                    <td><?php echo $row['FirstName'];?></td>
+                    <td><?php echo $row['LastName'];?></td>
+                    <td><?php echo $row['Gender'];?></td>
+                    </tr>
+                <tr> -->
+                <?php 
+                        }
+                    }
+                ?>
+            </tbody>
+        </table>
+
+
+    
+<?php load_footer(); ?>

@@ -36,6 +36,7 @@
     load_top();
     ch_title("Dashboard");
 ?>
+<script src="./frontend/friends.js"></script>
 
 <link rel="stylesheet" href="./frontend/chat.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
@@ -223,12 +224,14 @@
              </div>
               <!-- Friends tabs --> 
              <div id="Friends" class="tabcontent" style="display: none;">
-                 <div class="friend-main">
+             <div class="friend-main">
                     <div class="list-conversation">
-                        <div class="search-bar">
-                            <i class="fas fa-search"></i>
-                            <input placeholder="Tìm kiếm">
-                        </div>
+                        <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+                            <div class="search-bar">
+                                    <i  name="Search" class="fas fa-search"></i>
+                                    <input id="input-data" class="input-data" name="txtSearch" placeholder="Nhập Email để tìm kiếm"  autocomplete="off" >
+                            </div>
+                        </form>
                         <div class="conversations">
                              <div class="contact-list-item active">
                                     <img src="./frontend/img/list-user-add.png" class="fr-conv-item-avt">
@@ -242,11 +245,12 @@
                                 <span>Danh sách bạn bè (3)<i class="fas fa-chevron-down" style="margin-left: 5px;"></i></span>                               
                             </div>
                             <div class="conversations__main">
-                               
+                            
                             </div>
                         </div>
                     </div>
-                <div class="friend-add__list">
+
+                <!-- <div class="friend-add__list">
                     <div class="friend-add__title">
                         <h4 class="tab-name">Danh sách kết bạn <span style="color: green;">(3)</span></h4>
                         <img src="./frontend/img/list-user-add.png" class="fr-conv-item-avt">
@@ -270,67 +274,50 @@
                             <button class="btn btn-primary">Chấp nhận</button>
                             <button class="btn btn-outline-primary">Hủy</button>
                         </div>
+                    </div> 
+               
+                </div>  -->
+                <div class="search-filter">
+                    <div class="content">
+                        <h2>Tìm kiếm</h2>
+                        <div class="main-filter">
+                                <?php 
+                                    $connect = mysqli_connect(HOSTNAME, USER, PASS, DB);
+                                    $sql = "SELECT * FROM users";
+                                    $query = mysqli_query($connect, $sql);
+                                    $num = mysqli_num_rows($query);
+                                    $namePaticipatant = $name[0]['LastName'] . ' ' . $name[0]['FirstName'];
+                                    $avatarPaticipant = getAvatarById($paticipatants[0]['Users_Id']);
+                                    if($num > 0){
+                                        while($row = mysqli_fetch_array($query)){
+
+                                            if($row['Gender'] == 1)
+                                                $row['Gender'] = "Nam";
+                                                else{
+                                                    $row['Gender'] = "Nữ";
+                                                }    
+                                ?>
+                        
+
+                                    <!-- <div class="information-card">
+                                        <img class="user-avt" src="./frontend/img/user1.jpeg" alt"">
+                                        <div class="information-card__content">
+                                            <a class="link-information" href="#"><?php echo $row['FirstName'];?></a>
+                                            <p class="phone">0934718460</p>
+                                        </div>
+                                        <button class="friend-options" type="submit"><span class="material-icons">person_add</span>Kết bạn</button>
+                                    </div> -->
+
+                                <?php 
+                                    }
+                                }
+                                ?>
+                        </div>
+                        
                     </div>
-                </div>  
+                </div>
              </div>
-              <!-- <div class="friend-add__list">
-                    <div class="friend-add__title">
-                        <h4 class="tab-name">Danh sách nhóm <span style="color: green;">(3)</span></h4>
-                        <img src="./frontend/img/list-user-add.png" class="fr-conv-item-avt">
-                    </div>                   
-                    <div class="area-add">
-                        <div class="user-card">
-                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
-                            <span class="name-user">Bruce Wayne</span> <br />
-                            <button class="btn btn-primary">Chấp nhận</button>
-                            <button class="btn btn-outline-primary">Hủy</button>
-                        </div>
-                        <div class="user-card">
-                            <img class="user-avt" src="./frontend/img/user3.jpg" alt=""> <br/>
-                            <span class="name-user">Diana Prince</span> <br />
-                            <button class="btn btn-primary">Chấp nhận</button>
-                            <button class="btn btn-outline-primary">Hủy</button>
-                        </div>
-                        <div class="user-card">
-                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
-                            <span class="name-user">Bruce Wayne</span> <br />
-                            <button class="btn btn-primary">Chấp nhận</button>
-                            <button class="btn btn-outline-primary">Hủy</button>
-                        </div>
-                        <div class="user-card">
-                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
-                            <span class="name-user">Bruce Wayne</span> <br />
-                            <button class="btn btn-primary">Chấp nhận</button>
-                            <button class="btn btn-outline-primary">Hủy</button>
-                        </div>
-                        <div class="user-card">
-                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
-                            <span class="name-user">Bruce Wayne</span> <br />
-                            <button class="btn btn-primary">Chấp nhận</button>
-                            <button class="btn btn-outline-primary">Hủy</button>
-                        </div>
-                        <div class="user-card">
-                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
-                            <span class="name-user">Bruce Wayne</span> <br />
-                            <button class="btn btn-primary">Chấp nhận</button>
-                            <button class="btn btn-outline-primary">Hủy</button>
-                        </div>
-                        <div class="user-card">
-                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
-                            <span class="name-user">Bruce Wayne</span> <br />
-                            <button class="btn btn-primary">Chấp nhận</button>
-                            <button class="btn btn-outline-primary">Hủy</button>
-                        </div>
-                        <div class="user-card">
-                            <img class="user-avt" src="./frontend/img/user1.jpeg" alt=""> <br/>
-                            <span class="name-user">Bruce Wayne</span> <br />
-                            <button class="btn btn-primary">Chấp nhận</button>
-                            <button class="btn btn-outline-primary">Hủy</button>
-                        </div>
-                       
-                    </div>
-                </div>  
-             </div> -->
+              
              <!-- <div id="Settings" class="tabcontent">
                  Cài đặt
              </div> -->

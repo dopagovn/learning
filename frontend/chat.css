@@ -150,6 +150,7 @@ p {
   padding: 0px 10px;
   margin: 0px 10px;
 }
+
 .list-conversation .search-bar > input {
   outline: none;
   padding: 5px 7px;
@@ -631,6 +632,11 @@ i {
   height: 100%;
 }
 
+.friend-main .list-conversation .input-data {
+  border: none;
+  outline: none;
+}
+
 .conversations .contact-list-item .fr-conv-item-avt {
   margin: auto 14px auto 0;
   width: 52px;
@@ -656,7 +662,11 @@ i {
   margin: auto;
   bottom: auto;
   cursor: pointer;
-  background: linear-gradient(to right top, #69f7d8, #5eeaff);
+  background: linear-gradient(
+    to left top,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.5)
+  );
   color: black;
   transition: all 0.1s;
   border-radius: 10px;
@@ -666,7 +676,11 @@ i {
   margin: auto;
   bottom: auto;
   cursor: pointer;
-  background: linear-gradient(to right top, #69f7d8, #5eeaff);
+  background: linear-gradient(
+    to left top,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.5)
+  );
   color: black;
   transition: all 0.1s;
   border-radius: 10px;
@@ -798,4 +812,135 @@ i {
 .user-card .btn {
   margin-top: 20px;
   margin-left: calc(100% - 220px);
+}
+
+/* Search Filter */
+.search-filter {
+  width: 100%;
+  height: 100%;
+}
+
+.search-filter .content {
+  max-width: 100%;
+  height: 100%;
+  border-radius: 0 1rem 1rem 0rem;
+  border-left: solid 1px #65dfc9;
+}
+
+.search-filter .content .main-filter {
+  padding-top: 10px;
+  overflow: auto;
+  height: 765px;
+  border-radius: 0 0 20px 20px;
+}
+
+.search-filter .content .main-filter::-webkit-scrollbar {
+  width: 5px;
+  display: flex;
+  transform: translateY(-10px);
+}
+/* Track */
+.search-filter .content .main-filter::-webkit-scrollbar-track {
+  background: rgb(188, 239, 242);
+  border-radius: 2.5px;
+}
+
+/* Handle */
+.search-filter .content .main-filter::-webkit-scrollbar-thumb {
+  background: rgb(95, 220, 226);
+  border-radius: 2.5px;
+}
+
+/* Handle on hover */
+.search-filter .content .main-filter::-webkit-scrollbar-thumb:hover {
+  overflow: auto;
+  background: rgb(65, 175, 180);
+}
+
+.search-filter .content h2 {
+  color: #426696;
+  padding-top: 10px;
+  text-align: center;
+}
+.search-filter .content .main-filter .information-card {
+  background: linear-gradient(
+    to left top,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.5)
+  );
+  width: 97%;
+  height: 150px;
+  margin: 1rem 1rem;
+  border-radius: 1rem;
+  padding-left: 20px;
+  transition: 0.15s;
+  box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.2);
+  cursor: pointer;
+}
+
+.search-filter .content .main-filter .information-card .friend-options {
+  background-color: white;
+  margin-left: 760px;
+  height: 60px;
+  width: 130px;
+  border-radius: 1rem;
+  color: #426696;
+  transition: 0.2s;
+  box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.2);
+  font-weight: 600;
+  display: inset;
+}
+
+.search-filter .content .main-filter .information-card .friend-options span {
+  padding-right: 7px;
+  display: grid;
+}
+
+.search-filter .content .main-filter .information-card .friend-options:hover {
+  background-color: #fff8f8;
+}
+
+.search-filter .content .main-filter .information-card .user-avt {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin-top: -10px;
+  box-shadow: -5px -5px 15px 0.5px rgba(122, 122, 122, 0.5);
+}
+
+.search-filter
+  .content
+  .main-filter
+  .information-card
+  .information-card__content {
+  padding-left: 130px;
+  margin-top: -70px;
+}
+
+.search-filter
+  .content
+  .main-filter
+  .information-card
+  .information-card__content
+  .link-information {
+  text-decoration: none;
+  font-weight: 800;
+  color: #426696;
+  font-size: 20px;
+}
+
+.search-filter
+  .content
+  .main-filter
+  .information-card
+  .information-card__content
+  .phone {
+  font-weight: 600;
+  color: #426696;
+  font-size: 18px;
+  width: 250px;
+}
+
+.search-filter .content .main-filter .information-card:hover {
+  background: linear-gradient(to right top, #65dfc9, #6cdbeb);
 }
