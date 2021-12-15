@@ -56,8 +56,12 @@
 <form class="area-form__login" method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>" autocomplete="off">
     <div class="login-form">
         
-        <input id="Email" name="email" class="textBoxLogin" type="text" placeholder="Nhập tài khoản">
-        
+        <input id="Email" name="email" class="textBoxLogin" type="text" placeholder="Nhập Email">
+        <?php 
+            if(isset($validation['EmailIsEmpty'])){
+                echo '<span>Vui long nhap Email</span>';
+            }
+        ?>
         <input id="Password" name="password" class="textBoxLogin" type="password" placeholder="Nhập mật khẩu">   
     </div>
     <button class="btnLogin" type="submit" name="login">Đăng nhập</button> <br />

@@ -201,7 +201,9 @@
                     `status` varchar(1) NOT NULL,
                     `since` datetime NOT NULL DEFAULT current_timestamp()
                     );
-                    ALTER TABLE `relations` ADD PRIMARY KEY (`from`,`to`,`status`), ADD KEY `since` (`since`);";
+                    ALTER TABLE `relations` ADD KEY `since` (`since`);
+                    ALTER TABLE `relations` ADD FOREIGN KEY (`from`) REFERENCES users(`id`);
+                    ALTER TABLE `relations` ADD FOREIGN KEY (`to`) REFERENCES users(`id`);";
         mysqli_multi_query($connect, $query);
         mysqli_close($connect);
     }

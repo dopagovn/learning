@@ -8,6 +8,20 @@
     $name = getDataByQuery("SELECT * FROM users WHERE id = {$_SESSION['idUser']}");
     $name = $name[0]['LastName'] . ' ' . $name[0]['FirstName'];
 
+    $dir = 'backend/avatar/';
+    if(file_exists($dir . $_SESSION['idUser'] . '.png')){
+        $dir .= $_SESSION['idUser'] . '.png';
+    }
+    else if(file_exists($dir . $_SESSION['idUser'] . '.jpge')){
+        $dir .= $_SESSION['idUser'] . '.jpge';
+    }
+    else if(file_exists($dir . $_SESSION['idUser'] . '.jpg')){
+        $dir .= $_SESSION['idUser'] . '.jpg';
+    }
+    else if(file_exists($dir . $_SESSION['idUser'] . '.ico')){
+        $dir .= $_SESSION['idUser'] . '.ico';
+    }
+
     if(isset($_POST['choiceAvatar'])){
         if(!empty($_FILES['avatar']['name'])){
             $imageName = $_FILES['avatar']['name'];
@@ -15,15 +29,20 @@
             $imageExt = explode('.',$imageName);
             $imageExt = $imageExt[array_key_last($imageExt)];
             $imageExt = strtolower($imageExt);
-            $allowExt = ['','png','jpeg','jpg','ico'];
+            $allowExt = ['','png','jpge','jpg','ico'];
 
             $result = array_search($imageExt, $allowExt);
             if($result){
-                $dir = 'backend/avatar/';
+                $newDir = 'backend/avatar/';
                 $newFileName = $_SESSION['idUser'] . '.' . $imageExt;
-                move_uploaded_file($imageTmp, $dir . $newFileName);
+                if($dir != 'backend/avatar/'){
+                    // remove exist avatar
+                    unlink($dir);
+                }                
+                move_uploaded_file($imageTmp, $newDir . $newFileName);
             }        
         }
+        header('location: index.php');
     }
 ?>
 <html>
@@ -37,7 +56,14 @@
                 <img src="frontend/img/background.jpeg">
             </div>
             <div id="avatar">
-                <img id="avatar__img" src="./frontend/img/avatar-default-icon.png" />
+                <img id="avatar__img" src="<?php
+                    if($dir != 'backend/avatar/'){
+                        echo $dir;
+                    }
+                    else{
+                        echo './frontend/img/avatar-default-icon.png';
+                    }
+                ?>" />
                 <button type="button" class="btn-camera">
                     <i class="fas fa-camera"></i>
                 </button>
