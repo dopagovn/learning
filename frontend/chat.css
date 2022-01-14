@@ -1381,12 +1381,14 @@ i {
 
 /* Search Filter */
 .search-filter {
-  width: 100%;
-  height: 100%;
+  display: flex;
+  flex: 1;
 }
 
 .search-filter .content {
-  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   height: 100%;
   border-radius: 0 1rem 1rem 0rem;
   border-left: solid 1px #65dfc9;
@@ -1394,9 +1396,13 @@ i {
 
 .search-filter .content .main-filter {
   padding-top: 10px;
-  overflow: auto;
+  overflow: hidden;
+  overflow-y: scroll;
   height: 765px;
   border-radius: 0 0 20px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .search-filter .content .main-filter::-webkit-scrollbar {
@@ -1433,7 +1439,6 @@ i {
     rgba(255, 255, 255, 0.2),
     rgba(255, 255, 255, 0.5)
   );
-  width: 97%;
   height: 150px;
   margin: 1rem 1rem;
   border-radius: 1rem;
@@ -1445,7 +1450,6 @@ i {
 
 .search-filter .content .main-filter .information-card .friend-options {
   background-color: white;
-  margin-left: 760px;
   height: 60px;
   width: 130px;
   border-radius: 1rem;
@@ -1454,6 +1458,8 @@ i {
   box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.2);
   font-weight: 600;
   display: inset;
+  margin-left: 100%;
+  transform: translate(calc(-100% - 20px), -50%);
 }
 
 .search-filter .content .main-filter .information-card .friend-options span {

@@ -8,9 +8,10 @@
         
         $idUser = $_SESSION['idUser'];
         $otherId = $_GET['sendRequest'];
-        $query = " INSERT INTO `relations` (`from`, `to` , `status`) VALUES
+        $query = "INSERT INTO `relations` (`from`, `to` , `status`) VALUES
                     ($idUser, $otherId, 'P')";
         excuteQuery($query);
+        echo "$query";
     }
     else if(isset($_GET['cancelRequest'])){
         require_once('./backend/mysql_config.php');
@@ -25,22 +26,22 @@
         
         $idUser = $_SESSION['idUser'];
         $otherId = $_GET['acceptRequest'];
-        $query = " UPDATE `relations` SET `status` = 'F' WHERE `from` = $idUser AND `to` = $otherId";
-        executeQuery($query);
+        $query = " UPDATE `relations` SET `status` = 'F' WHERE `from` = $otherId AND `to` = $idUser";
+        excuteQuery($query);
+        echo "$query";
     }
     else if(isset($_GET['cancelFriend'])){
         require_once('./backend/mysql_config.php');
         
         $idUser = $_SESSION['idUser'];
         $otherId = $_GET['cancelFriend'];
-        $query = " DELETE FROM `relations` WHERE `from` = $idUser AND `to` = $otherId OR `from` = $otherId AND `to` = $idUser";
+        $query = " DELETE FROM `relations` WHERE (`from` = $idUser AND `to` = $otherId) OR (`from` = $otherId AND `to` = $idUser)";
         excuteQuery($query);
+        echo $query;
     }
     else{
             require_once('./backend/mysql_config.php');
             $idUser = $_SESSION['idUser'];
-
-          
 
             // Search Data Users
             $connect = mysqli_connect(HOSTNAME, USER, PASS, DB);
@@ -126,7 +127,7 @@
                                 <a class='link-information' href='#'>{$nameUser}</a>
                                 <p class='phone'>{$row['Phone']}</p>
                             </div>
-                            <button id='{$row['id']}' class='friend-options cancel-friend' type='submit'><span class='material-icons'>person_add</span>Hủy kết bạn</button>
+                            <button id='{$row['id']}' class='friend-options cancel-friend' type='submit'>Hủy kết bạn</button>
                         </div>";
                 }  
                 elseif(isPending($row['id'])){
@@ -137,7 +138,7 @@
                                 <a class='link-information' href='#'>{$nameUser}</a>
                                 <p class='phone'>{$row['Phone']}</p>
                             </div>
-                            <button id='{$row['id']}' class='friend-options cancel-request' type='submit'><span class='material-icons'>person_add</span>Hủy lời mời</button>
+                            <button id='{$row['id']}' class='friend-options cancel-request' type='submit'>Hủy lời mời</button>
                         </div>";
                 }
                 elseif(receivePending($row['id'])){

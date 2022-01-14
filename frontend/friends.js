@@ -7,97 +7,111 @@ $(document).ready(function(){
             $('.main-filter').html(data);
         })
         .then(() => {
-            init();
-            init2();
+            reloadBtns();
         })
         
     })
 })
 
-let btnRequests;
-let btnCancelRequests;
-let btnAcceptRequest;
-let btnCancelFriend;
+
+
+let testE = document.querySelector('.search-filter');
+
+function reloadBtns(){
+    let btnRequests = document.querySelectorAll('.search-filter .content .main-filter .information-card .request');
+    btnRequests.forEach((e) => {
+        e.addEventListener('click', requestFriend);
+    });
+
+    let btnCancelRequests = document.querySelectorAll('.search-filter .content .main-filter .information-card .cancel-request');
+    btnCancelRequests.forEach((e) => {
+        e.addEventListener('click', cancelRequests);
+    });
+
+    let btnAcceptRequests = document.querySelectorAll('.search-filter .content .main-filter .information-card .accept-request');
+    btnAcceptRequests.forEach((e) => {
+        e.addEventListener('click', acceptRequest);
+    });
+
+    let btnCancelFriends = document.querySelectorAll('.search-filter .content .main-filter .information-card .cancel-friend');
+    btnCancelFriends.forEach((e) => {
+        e.addEventListener('click', cancelFriend);
+    });;
+}
 
 function requestFriend(ev){
-    let idOther = ev.target.id;
+    let btnElement = ev.target; 
+    if(btnElement.tagName != 'BUTTON'){
+        btnElement = btnElement.parentElement;
+    }
+    let idOther = btnElement.id;
     let ajax = new XMLHttpRequest();
     ajax.open('GET', 'ajax.php/?sendRequest=' + idOther);
     ajax.onload = () => {
         alert('Gửi kết bạn thành công');
-        ev.target.textContent = 'Hủy lời mời';
-        ev.target.removeEventListener('click', requestFriend);
-        ev.target.classList.remove('request');
-        ev.target.classList.add('cancel-request');
-        init2();
+        btnElement.textContent = 'Hủy lời mời';
+        btnElement.removeEventListener('click', requestFriend);
+        btnElement.classList.remove('request');
+        btnElement.classList.add('cancel-request');
+        reloadBtns();
     }
     ajax.send();
 }
-function init(){
-    btnRequests = document.querySelectorAll('.search-filter .content .main-filter .information-card .request');
-    btnRequests.forEach((e) => {
-        e.addEventListener('click', requestFriend);
-    });
-}
-function CancelRequests(ev){
-    let idOther = ev.target.id;
+
+function cancelRequests(ev){
+    let btnElement = ev.target;   
+    if(btnElement.tagName != 'BUTTON'){
+        btnElement = btnElement.parentElement;
+    }
+    let idOther = btnElement.id;
     let ajax = new XMLHttpRequest();
     ajax.open('GET', 'ajax.php/?cancelRequest=' + idOther);
     ajax.onload = () => {
         alert('Hủy lời mời thành công');
-        ev.target.textContent = 'Kết bạn';
-        ev.target.removeEventListener('click', CancelRequests);
-        ev.target.classList.add('request');
-        ev.target.classList.remove('cancel-request');
-        init();
+        btnElement.innerHTML = "<span class='material-icons'>person_add</span>Kết bạn";
+        btnElement.removeEventListener('click', cancelRequests);
+        btnElement.classList.add('request');
+        btnElement.classList.remove('cancel-request');
+        reloadBtns();
     }
     ajax.send();
 }
-function init2(){
-    btnCancelRequests = document.querySelectorAll('.search-filter .content .main-filter .information-card .cancel-request');
-    for(let i = 0; i < btnCancelRequests.length; i++){
-        btnCancelRequests[i].addEventListener('click', CancelRequests);
-    }
-}
 
 function acceptRequest(ev){
-    let idOther = ev.target.id;
+    let btnElement = ev.target;   
+    if(btnElement.tagName != 'BUTTON'){
+        btnElement = btnElement.parentElement;
+    }
+    let idOther = btnElement.id;
     let ajax = new XMLHttpRequest();
     ajax.open('GET', 'ajax.php/?acceptRequest=' + idOther);
     ajax.onload = () => {
         alert('Chấp nhận lời mời thành công');
-        ev.target.textContent = 'Hủy kết bạn';
-        ev.target.removeEventListener('click', acceptRequest);
-        ev.target.classList.remove('accept-request');
-        ev.target.classList.add('cancel-request');
-        init2();
+        btnElement.textContent = 'Hủy kết bạn';
+        btnElement.removeEventListener('click', acceptRequest);
+        btnElement.classList.remove('accept-request');
+        btnElement.classList.add('cancel-friend');
+        reloadBtns();
     }
     ajax.send();
 }
 
-function init3(){
-    btnAcceptRequest = document.querySelector('.search-filter .content .main-filter .information-card .accept-request');
-    btnAcceptRequest.forEach((e) => {
-        e.addEventListener('click', acceptRequest);
-    });
-}
-function CancelFriend(ev){
-    let idOther = ev.target.id;
+function cancelFriend(ev){
+    let btnElement = ev.target;   
+    if(btnElement.tagName != 'BUTTON'){
+        btnElement = btnElement.parentElement;
+    }
+    let idOther = btnElement.id;
     let ajax = new XMLHttpRequest();
     ajax.open('GET', 'ajax.php/?cancelFriend=' + idOther);
     ajax.onload = () => {
         alert('Hủy kết bạn thành công');
-        ev.target.textContent = 'Kết bạn';
-        ev.target.removeEventListener('click', CancelFriend);
-        ev.target.classList.add('request');
-        ev.target.classList.remove('cancel-friend');
-        init();
+        btnElement.innerHTML = "<span class='material-icons'>person_add</span>Kết bạn";
+        btnElement.removeEventListener('click', cancelFriend);
+        btnElement.classList.add('request');
+        btnElement.classList.remove('cancel-friend');
+        reloadBtns();
+        console.log(ajax.responseText);
     }
     ajax.send();
-}
-function init4(){
-    btnCancelFriend = document.querySelectorAll('.search-filter .content .main-filter .information-card .cancel-friend');
-    for(let i = 0; i < btnCancelFriend.length; i++){
-        btnCancelFriend[i].addEventListener('click', CancelFriend);
-    }
 }
