@@ -25,7 +25,6 @@
                 }
                 $data[] = ['idUser' => $idUser, 'time' => $nowDate];
                 file_put_contents('online.txt', json_encode($data));
-                echo 'not exist';
             } 
         }
         else if(isset($_POST['getStatusParticipant'])){
@@ -82,10 +81,15 @@
                         }
                     }
                 }
-                echo 'Not Found';
+                else if(count($idParticipants) >= 2){
+                    echo count($idParticipants) + 1 . ' thành viên';
+                }
+                else{
+                    echo 'Not Found 1';
+                }  
             }
             else{
-                echo 'Not Found';
+                echo 'Not Found 2';
             }
         }
     }

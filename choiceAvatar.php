@@ -36,6 +36,7 @@
                 $newDir = 'backend/avatar/';
                 $newFileName = $_SESSION['idUser'] . '.' . $imageExt;
                 if($dir != 'backend/avatar/'){
+                    // remove exist avatar
                     unlink($dir);
                 }                
                 move_uploaded_file($imageTmp, $newDir . $newFileName);
