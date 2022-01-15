@@ -1,0 +1,13 @@
+1+1.2+1.2.3
+
+3*dequy(2)+dequy(2)
+2*dequy(1)+dequy(1)
+
+4*dequy(3)+dequy(3) 12*4+12
+3*dequy(2)+dequy(2) 12
+2*dequy(1)+dequy(1) 3
+
+giaithua(3)+giaithua(2)
+giaithua(2)+giaithua(1)+giaithua(1)
+giaithua(1)
+

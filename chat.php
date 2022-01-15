@@ -43,30 +43,29 @@
     <section class='glass'>
         <div class="dashboard">
             <!-- avatar -->
-            <img src="<?php echo $avatarUserDir; ?>" alt="">
+            <a href="./profile.php"><img src="<?php echo $avatarUserDir; ?>" alt=""></a>
             <h3>
                 <?php echo $nameUser; ?>
             </h3>
-            <div class="links">
+            <div id="message" class="links">
                 <a href="#" onclick="openTab( event , 'Chat')"><span class="material-icons">
                         chat_bubble
                     </span>
-                    <h2>Tin nhắn</h2>
+                    <h2 style="width: 106.36px;">Tin nhắn</h2>
                 </a>
-
             </div>
-            <div class="links">
+            <div id="friend" class="links">
                 <a href="#" onclick="openTab( event , 'Friends')"><span class="material-icons">
                         people
                     </span>
                     <h2>Bạn bè</h2>
                 </a>
             </div>
-            <div class="links">
-                <a href="./profile.php"><span class="material-icons">
+            <div id="setting" class="links" style="cursor: pointer;">
+                <a><span class="material-icons">
                         settings
                     </span>
-                    <h2>Setting</h2>
+                    <h2>Cài đặt</h2>
                 </a>
             </div>
 
@@ -89,6 +88,7 @@
                     <div class="conversations">
                         <div class="conversations__title">
                             <span>Tất cả tin nhắn<i class="fas fa-chevron-down" style="margin-left: 5px;"></i></span>
+                            <span style="display: none;">Bạn bè<i class="fas fa-chevron-down" style="margin-left: 5px;"></i></span>
                         </div>
                         <div class="conversations__main">
                             <?php
@@ -177,17 +177,17 @@
                                 <input id="slide-1" type="radio" name="slidebar" value="1" checked>
                                 <input id="slide-2" type="radio" name="slidebar" value="2">
                                 <input id="slide-3" type="radio" name="slidebar" value="3">
-                                <div class="slide">
+                                <div id="s1" class="slide">
                                     <img src="frontend/img/svg1.png">
                                     <p class="title">Giao diện trực quan</p>
                                     <p class="content">Ứng dụng có giao diện trực quan, rất dễ sử dụng</p>
                                 </div>
-                                <div class="slide">
+                                <div id="s2" class="slide">
                                     <img src="frontend/img/svg2.png">
                                     <p class="title">Trò chuyện thời gian thực</p>
                                     <p class="content">Trò chuyện trực tuyến, phản hồi tức thời</p>
                                 </div>
-                                <div class="slide">
+                                <div id="s3" class="slide">
                                     <img src="frontend/img/svg3.png">
                                     <p class="title">Gửi file nhanh chóng</p>
                                     <p class="content">Gửi file nặng, bất kì file nào, bất cứ lúc nào</p>
@@ -404,11 +404,56 @@
                     </div>
                 </div>
             </div>
-
-
+        </div>
+        <div class="setting">
+            <div class="setting-main">
+                <div class="menu-left">
+                    <div class="title">Cài đặt</div>
+                    <div class="menu-left-main">
+                        <div id="generalSetting" class="menu-left-main__item menu-left-main__item--choice">
+                            <i class="fas fa-cog"></i>
+                            <span>Cài đặt chung</span>
+                        </div>
+                        <div id="themeSetting" class="menu-left-main__item">
+                            <i class="fas fa-paint-brush"></i>
+                            <span>Giao diện</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-right">
+                    <div class="title"><i class="fas fa-times"></i></div>
+                    <div id="generalDetail" class="menu-right-main">
+                        <div class="menu-right-main__item">
+                            <p class="title">Ngôn ngữ (Language)</p>
+                            <div class="detail">
+                                <span class="title">Thay đổi ngôn ngữ</span>
+                                <select>
+                                    <option value="vi" selected>Tiếng Việt</option>
+                                    <option value="en">English</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="themeDetail" class="menu-right-main" style="display: none;">
+                        <div class="menu-right-main__item">
+                            <p class="title">Cài đặt giao diện</p>
+                            <div class="detail">
+                                <span class="title">Sáng (mặc định)</span>
+                                <input type="radio" name="theme" value="light" checked>
+                            </div>
+                            <div class="detail">
+                                <span class="title">Tối (tiết kiệm pin)</span>
+                                <input type="radio" name="theme" value="dark">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 </main>
-
+<style>
+</style>
 
 <!-- Circle -->
 <div class="circle1"></div>

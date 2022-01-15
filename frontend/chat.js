@@ -127,25 +127,51 @@ setInterval(() => {
             let contentFile = mes.querySelector('.area-message__message:last-child .content .content__download');
             let contentDelete = mes.querySelector('.area-message__message:last-child .content .content__message--delete');
             let time = mes.querySelector('.area-message__message:last-child .content .content__time');
-            
-            if(name && content && time && !contentDelete){           
+            let type = settingConfig.language;
+            if(name && content && time && !contentDelete){              
+                if(type == 'en'){
+                    if(name.textContent == 'Bạn'){
+                        name.textContent = 'You';
+                    }
+                }           
                 e.textContent = name.textContent + ': ' + content.textContent;
                 timeConversationElements[idx].textContent = time.textContent;
             }
             else if(contentImg){
                 e.textContent = name.textContent + ' đã gửi một ảnh';
+                if(type == 'en'){
+                    if(name.textContent == 'Bạn'){
+                        name.textContent = 'You';
+                    }
+                    e.textContent = name.textContent + ' send an image';
+                }
                 timeConversationElements[idx].textContent = time.textContent;
             }
             else if(contentFile){
                 e.textContent = name.textContent + ' đã gửi một file';
+                if(type == 'en'){
+                    if(name.textContent == 'Bạn'){
+                        name.textContent = 'You';
+                    }
+                    e.textContent = name.textContent + ' send a file';
+                }
                 timeConversationElements[idx].textContent = time.textContent;
             }
             else if(contentDelete){
                 e.textContent = name.textContent + ': ' + 'Đã xóa tin nhắn';
+                if(type == 'en'){
+                    if(name.textContent == 'Bạn'){
+                        name.textContent = 'You';
+                    }
+                    e.textContent = name.textContent + ': ' + 'Deleted a message';
+                }
                 timeConversationElements[idx].textContent = time.textContent;
             }           
             else{
                 e.textContent = 'Chưa có tin nhắn';
+                if(type == 'en'){
+                    e.textContent = 'No message';
+                }
                 timeConversationElements[idx].textContent = '';
             }
         });
@@ -154,11 +180,14 @@ setInterval(() => {
         if(currentConversation != -1){
             if(messageAreaElement){
                 let lastMessage = conversations[currentConversation];
+                let type = settingConfig.language;
                 if(!beforeMessages[currentConversation] && beforeMessages[currentConversation] != ''){
                     beforeMessages[currentConversation] = conversations[currentConversation];
+                    initLanguage();
                 }
                 else if(beforeMessages[currentConversation] != lastMessage){
                     areaMessageElement.innerHTML = conversations[currentConversation];
+                    initLanguage();
                     areaMessageElement.innerHTML += `
                         <div class='area-message__viewImage' style='display: none;'>                               
                             <img class='content__img' src='backend/message_file/56504108_1_5_Untitled123.png'>
@@ -191,6 +220,8 @@ conversationElements.forEach((e, idx) => {
         const namePaticipantElement = document.querySelector('.chat-area__main .partner-info .info .info__content > .name');
         let avatarPaticipantElement = document.querySelector('.chat-area__main .partner-info .info > *:first-child');
         namePaticipantElement.textContent = e.querySelector('.conversation-item__content > .title').textContent;
+        inputChatElement.placeholder = 'Gửi tin nhắn tới ' + namePaticipantElement.textContent;
+        initLanguage();
         if(e.querySelector('.conversation-item__avatar')){
             avatarPaticipantElement.outerHTML = e.querySelector('.conversation-item__avatar').outerHTML;
         }
@@ -362,7 +393,6 @@ function getStatus(){
     ajax.setRequestHeader('Content-type','application/x-www-form-urlencoded');
     ajax.send('getStatusParticipant=true');
     ajax.onload = () => {
-        console.log(ajax.responseText);
         let status = ajax.responseText;
         timePaticipantElement.textContent = status;
         const statusElement = document.querySelector('.chat-area__main .partner-info .info .info__status > span');
@@ -377,6 +407,15 @@ function getStatus(){
         else{
             statusElement.style.backgroundColor = 'gray';
             statusParentElement.style.display = 'block';
+
+            let type = settingConfig.language;
+            if(type == 'en' && status){
+                let statusStrs = status.split(' ');
+                let statusStr = statusStrs[0] + ' ' + statusStrs[1] + ' ' + 'minutes ago';
+                timePaticipantElement.textContent = statusStr;
+                console.log(statusStr);
+            }
+            console.log(status);
         }
     }
 }
@@ -473,7 +512,6 @@ btnGroupShowElement.addEventListener('click', () => {
         const listFriendElement = document.querySelector('.group-create__form form > .list-friend');
         listFriendElement.innerHTML = ajax.responseText;
         listFriendSearchElements = document.querySelectorAll('.group-create__form form > .list-friend > .list-friend__row');
-        console.log(ajax.responseText);
     }
 });
 
@@ -530,17 +568,19 @@ inputSearchFriendElement.addEventListener('input' ,() => {
 // search friend to chat
 const searchInputElement = document.querySelector('.list-conversation .search-bar > input');
 const btnCloseSearchELement = document.querySelector('.list-conversation .search-bar > .close-search');
-const conversationTitleElement = document.querySelector('.list-conversation .conversations .conversations__title');
 
 searchInputElement.addEventListener('focus', () => {
     const conversationMainElement = document.querySelector('.list-conversation .conversations .conversations__main');
     const resultMainElement = document.querySelector('.list-conversation .search-bar__result');
+    const conversationTitle1Element = document.querySelector('.list-conversation .conversations .conversations__title > span:first-child');
+    const conversationTitle2Element = document.querySelector('.list-conversation .conversations .conversations__title > span:last-child');
 
     conversationMainElement.style = 'display: none;';
     resultMainElement.style = 'display: flex;';
     btnGroupShowElement.style = 'display: none';
     btnCloseSearchELement.style = 'display: flex';
-    conversationTitleElement.innerHTML = '<span>Bạn bè<i class="fas fa-chevron-down" style="margin-left: 5px;"></i></span>';
+    conversationTitle1Element.style = 'display: none;';
+    conversationTitle2Element.style = 'display: inline;';
     searchFriendToChat();  
 });
 function searchFriendToChat(){
@@ -564,6 +604,7 @@ function searchFriendToChat(){
         });
         const resultMainElement = document.querySelector('.list-conversation .search-bar__result');
         resultMainElement.innerHTML = html;
+        initLanguage();
         // init button
         const btnCreateConversationElements = document.querySelectorAll('.list-conversation .search-bar__result > .result > button');
         btnCreateConversationElements.forEach((e) => {
@@ -601,12 +642,15 @@ searchInputElement.addEventListener('input', () => {
 btnCloseSearchELement.addEventListener('click', () => {
     const conversationMainElement = document.querySelector('.list-conversation .conversations .conversations__main');
     const resultMainElement = document.querySelector('.list-conversation .search-bar__result');
+    const conversationTitle1Element = document.querySelector('.list-conversation .conversations .conversations__title > span:first-child');
+    const conversationTitle2Element = document.querySelector('.list-conversation .conversations .conversations__title > span:last-child');
 
     conversationMainElement.style = 'display: flex;';
     resultMainElement.style = 'display: none;';
     btnGroupShowElement.style = 'display: flex';
     btnCloseSearchELement.style = 'display: none';
-    conversationTitleElement.innerHTML = '<span>Tất cả tin nhắn<i class="fas fa-chevron-down" style="margin-left: 5px;"></i></span>';
+    conversationTitle1Element.style = 'display: inline;';
+    conversationTitle2Element.style = 'display: none;';
     searchInputElement.value = '';
 });
 
@@ -631,3 +675,352 @@ for (var i = 0; i < btns.length; i++){
         this.className += " active";
     })
 }
+
+// setting click
+const btnSettingElement = document.querySelector('#setting');
+const areaSettingElement = document.querySelector('.setting');
+const btnCloseSettingElement = document.querySelector('.setting .setting-main .menu-right > .title > i');
+const btnMenuLeftElements = document.querySelectorAll('.setting .setting-main .menu-left > .menu-left-main > .menu-left-main__item');
+const btnMenuLeftGeneralElement = document.querySelector('.setting .setting-main .menu-left > .menu-left-main > #generalSetting');
+const btnMenuLeftThemeElement = document.querySelector('.setting .setting-main .menu-left > .menu-left-main > #themeSetting');
+const areaGeneralDetailElement = document.querySelector('.setting .setting-main .menu-right > #generalDetail');
+const areaThemeDetailElement = document.querySelector('.setting .setting-main .menu-right > #themeDetail');
+const selectLanguageElement = document.querySelector('.setting .setting-main .menu-right .menu-right-main > .menu-right-main__item > .detail > select');
+const selectLightThemeElement = document.querySelector('.setting .setting-main .menu-right .menu-right-main > .menu-right-main__item > .detail > input[value="light"]');
+const selectDarkThemeElement = document.querySelector('.setting .setting-main .menu-right .menu-right-main > .menu-right-main__item > .detail > input[value="dark"]');
+
+btnSettingElement.addEventListener('click', () => {
+    areaSettingElement.style = 'display: flex';
+    let optionViElement = selectLanguageElement.querySelector('option[value="vi"]');
+    let optionEnElement = selectLanguageElement.querySelector('option[value="en"]');   
+    let typeLanguage = settingConfig.language;
+    if(typeLanguage == 'vi'){
+        optionViElement.selected = 'selected';
+    }
+    if(typeLanguage == 'en'){
+        optionEnElement.selected = 'selected';
+    }
+    let typeTheme = settingConfig.theme;
+    if(typeTheme == 'light'){
+        selectLightThemeElement.checked = true;
+    }
+    if(typeTheme == 'dark'){
+        selectDarkThemeElement.checked = true;
+    }
+});
+btnCloseSettingElement.addEventListener('click', () => {
+    areaSettingElement.style = 'display: none';
+});
+function resetColorBtnMenuLeft(){
+    btnMenuLeftElements.forEach((e) => {
+        e.classList.remove('menu-left-main__item--choice');
+    })
+}
+btnMenuLeftElements.forEach((e) => {
+    e.addEventListener('click', (ev) => {
+        resetColorBtnMenuLeft();
+        e.classList.add('menu-left-main__item--choice');
+    });
+});
+btnMenuLeftGeneralElement.addEventListener('click', () => {
+    areaGeneralDetailElement.style = 'display: flex';
+    areaThemeDetailElement.style = 'display: none';
+});
+btnMenuLeftThemeElement.addEventListener('click', () => {
+    areaGeneralDetailElement.style = 'display: none';
+    areaThemeDetailElement.style = 'display: flex';
+});
+selectLanguageElement.addEventListener('input', () => {
+    settingConfig.language = selectLanguageElement.value;
+    setCookie('setting', JSON.stringify(settingConfig), 1);
+    initLanguage();
+});
+selectLightThemeElement.addEventListener('input', () => {
+    settingConfig.theme = 'light';
+    setCookie('setting', JSON.stringify(settingConfig), 1);
+    initTheme();
+});
+selectDarkThemeElement.addEventListener('input', () => {
+    settingConfig.theme = 'dark';
+    setCookie('setting', JSON.stringify(settingConfig), 1);
+    initTheme();
+});
+
+var settingConfig = JSON.parse(getCookie('setting'));
+function getCookie(name){
+    let cookieStr = decodeURIComponent(document.cookie);
+    let cookieStrs = cookieStr.split(';');
+    for(let i = 0; i < cookieStrs.length; i++){
+        let cookiePair = cookieStrs[i].split('=');
+        let key = cookiePair[0].trim();
+        let value = cookiePair[1].trim();
+        if(key == name){
+            return value;
+        }
+    }
+    return "";
+}
+function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    let expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+function initLanguage(){
+    let type = settingConfig.language;
+    const h2MesageElement = document.querySelector('#message h2');
+    const h2FriendElement = document.querySelector('#friend h2');
+    const conversationTitleElement = document.querySelector('.list-conversation .conversations .conversations__title');
+    const fastChatElement = document.querySelector('.chat-area__main .area-send .area-send__toolbar > .fast-menu > .fast-menu__main');
+    const titleSettingElement = document.querySelector('.setting .setting-main .menu-left > .title');
+    const titleSetting2Element = document.querySelector('.setting .setting-main .menu-right #generalDetail > .menu-right-main__item > .title');
+    const titleSetting3Element = document.querySelector('.setting .setting-main .menu-right .menu-right-main > .menu-right-main__item > .detail > .title');
+    const optionViElement = selectLanguageElement.querySelector('option[value="vi"]');
+    const titleSetting4Element = document.querySelector('.setting .setting-main .menu-right #themeDetail > .menu-right-main__item > .title');
+    const titleGroupElement = document.querySelector('.group-create__form form > .title > p');
+    const inputNameGroupElement = document.querySelector('.group-create__form form > .info > input');
+    const titleSearchGroupElement = document.querySelector('.group-create__form form > .add-people > p:first-child');
+    const inputSearchGroupElement = document.querySelector('.group-create__form form > .add-people > input');
+    const titleAllGroupElement = document.querySelector('.group-create__form form > .add-people > p:last-child');
+    const btnCancerGroupElement = document.querySelector('.group-create__form form > .btns > p:first-child');
+    const btnCreateGroupElement = document.querySelector('.group-create__form form > .btns > input[type="submit"]');
+    const titleSliderElement = document.querySelector('.chat-area__intro > .title');
+    const introSliderElement = document.querySelector('.chat-area__intro > .content');
+    const titleSlide1Element = document.querySelector('.slider-bar .slider-bar__slides > #s1 > .title');
+    const contentSlide1Element = document.querySelector('.slider-bar .slider-bar__slides > #s1 > .content');
+    const titleSlide2Element = document.querySelector('.slider-bar .slider-bar__slides > #s2 > .title');
+    const contentSlide2Element = document.querySelector('.slider-bar .slider-bar__slides > #s2 > .content');
+    const titleSlide3Element = document.querySelector('.slider-bar .slider-bar__slides > #s3 > .title');
+    const contentSlide3Element = document.querySelector('.slider-bar .slider-bar__slides > #s3 > .content');
+    const inputSearchFriendElement = document.querySelector('.list-conversation .search-bar > #input-data');
+    const titleFriendElement = document.querySelector('#Friends .list-conversation .conversations');
+    const title2FriendElement = document.querySelector('.search-filter .content h2');
+    const resultSearchFriendElement = document.querySelector('.search-filter .content .main-filter');
+    const resultSearch2FriendElement = document.querySelector('.list-conversation .search-bar__result');
+
+    if(type == 'en'){
+        h2MesageElement.textContent = "Message";
+        h2FriendElement.textContent = "Friend";
+        btnSettingElement.querySelector('h2').textContent = "Setting";
+        searchInputElement.placeholder = 'My friend';
+        btnCloseSearchELement.textContent = 'Close';
+        conversationTitleElement.innerHTML = `
+            <span>All messages<i class="fas fa-chevron-down" style="margin-left: 5px;"></i></span>
+            <span style="display: none;">Friend<i class="fas fa-chevron-down" style="margin-left: 5px;"></i></span>
+        `;
+        inputChatElement.placeholder = inputChatElement.placeholder.replace('Gửi tin nhắn tới','Send a message to');
+        fastChatElement.innerHTML = `
+            <p>Hello</p>
+            <p>GoodBye</p>
+            <p>See you again</p>
+            <p>Nice to meet you</p>
+        `;
+        choiceFastChat();
+        areaMessageElement.innerHTML = areaMessageElement.innerHTML.replaceAll(
+            ">Bạn<",
+            ">You<"
+        );
+        titleSettingElement.textContent = 'Setting';
+        btnMenuLeftGeneralElement.querySelector('span').textContent = 'General';
+        btnMenuLeftThemeElement.querySelector('span').textContent = 'Theme';
+        titleSetting2Element.textContent = 'Language (Ngôn ngữ)';
+        titleSetting3Element.textContent = 'Change language';
+        optionViElement.textContent = 'Vietnamese';
+        titleSetting4Element.textContent = 'Theme';
+        selectLightThemeElement.parentElement.querySelector('span').textContent = 'Light (default)';
+        selectDarkThemeElement.parentElement.querySelector('span').textContent = 'Dark (save power)';
+        // group
+        titleGroupElement.textContent = 'Create group';
+        inputNameGroupElement.placeholder = 'Enter group name';
+        titleSearchGroupElement.textContent = 'Add friend';
+        inputSearchGroupElement.placeholder = 'Enter friend name';
+        titleAllGroupElement.textContent = 'All';
+        btnCancerGroupElement.textContent = 'Cancer';
+        btnCreateGroupElement.value = 'Create';
+        //slide
+        titleSliderElement.innerHTML = 'Welcome to <span style="font-weight: 500;">ChatApp!</span>';
+        introSliderElement.textContent = 'Explore chat apps online with people, connect friends, communicate anytime and anywhere.';
+        titleSlide1Element.textContent = 'Beautiful app';
+        contentSlide1Element.textContent = 'The application has an clear interface, easy to use';
+        titleSlide2Element.textContent = 'Real-time chat';
+        contentSlide2Element.textContent = 'Online chat, send fast message';
+        titleSlide3Element.textContent = 'Send faster file';
+        contentSlide3Element.textContent = 'Send big files, any files, anytime';
+        //friend
+        inputSearchFriendElement.placeholder = 'Search other';
+        titleFriendElement.innerHTML = titleFriendElement.innerHTML.replaceAll(
+            'Danh sách kết bạn',
+            'Request list'
+        );
+        titleFriendElement.innerHTML = titleFriendElement.innerHTML.replaceAll(
+            'Danh sách nhóm',
+            'Group list'
+        );
+        titleFriendElement.innerHTML = titleFriendElement.innerHTML.replaceAll(
+            'Danh sách bạn bè',
+            'Friend list'
+        );
+        title2FriendElement.textContent = 'Search';
+        resultSearchFriendElement.innerHTML = resultSearchFriendElement.innerHTML.replaceAll(
+            'Kết bạn',
+            'Request'
+        );
+        resultSearchFriendElement.innerHTML = resultSearchFriendElement.innerHTML.replaceAll(
+            'Hủy kết bạn',
+            'Cancer friend'
+        );
+        resultSearchFriendElement.innerHTML = resultSearchFriendElement.innerHTML.replaceAll(
+            'Chấp nhận',
+            'Accept'
+        );
+        resultSearchFriendElement.innerHTML = resultSearchFriendElement.innerHTML.replaceAll(
+            'Bạn bè',
+            'Friend'
+        );
+        resultSearchFriendElement.innerHTML = resultSearchFriendElement.innerHTML.replaceAll(
+            'Hủy lời mời',
+            'Cancer request'
+        );
+        resultSearch2FriendElement.innerHTML = resultSearch2FriendElement.innerHTML.replaceAll(
+            'Bạn bè',
+            'Friend'
+        );
+        resultSearch2FriendElement.innerHTML = resultSearch2FriendElement.innerHTML.replaceAll(
+            'Nhắn tin',
+            'Send'
+        );
+    }
+    if(type == 'vi'){
+        h2MesageElement.textContent = "Tin nhắn";
+        h2FriendElement.textContent = "Bạn bè";
+        btnSettingElement.querySelector('h2').textContent = "Cài đặt";
+        searchInputElement.placeholder = 'Bạn bè';
+        btnCloseSearchELement.textContent = 'Đóng';
+        conversationTitleElement.innerHTML = `
+            <span>Tất cả tin nhắn<i class="fas fa-chevron-down" style="margin-left: 5px;"></i></span>
+            <span style="display: none;">Bạn bè<i class="fas fa-chevron-down" style="margin-left: 5px;"></i></span>
+        `
+        inputChatElement.placeholder = inputChatElement.placeholder.replace('Send a message to','Gửi tin nhắn tới');
+        fastChatElement.innerHTML = `
+            <p>Xin Chào</p>
+            <p>Tạm biệt</p>
+            <p>Hẹn gặp lại</p>
+            <p>Hân hạnh làm quen</p>
+        `;
+        choiceFastChat();
+        areaMessageElement.innerHTML = areaMessageElement.innerHTML.replaceAll(
+            ">You<",
+            ">Bạn<"
+        );
+        titleSettingElement.textContent = 'Cài đặt';
+        btnMenuLeftGeneralElement.querySelector('span').textContent = 'Cài đặt chung';
+        btnMenuLeftThemeElement.querySelector('span').textContent = 'Giao diện';
+        titleSetting2Element.textContent = 'Ngôn ngữ (Language)';
+        titleSetting3Element.textContent = 'Thay đổi ngôn ngữ';
+        optionViElement.textContent = 'Tiếng việt';
+        titleSetting4Element.textContent = 'Cài đặt giao diện';
+        selectLightThemeElement.parentElement.querySelector('span').textContent = 'Sáng (mặc định)';
+        selectDarkThemeElement.parentElement.querySelector('span').textContent = 'Tối (tiết kiệm pin)';
+        // group
+        titleGroupElement.textContent = 'Tạo nhóm';
+        inputNameGroupElement.placeholder = 'Nhập tên nhóm';
+        titleSearchGroupElement.textContent = 'Thêm bạn vào nhóm';
+        inputSearchGroupElement.placeholder = 'Nhập tên';
+        titleAllGroupElement.textContent = 'Tất cả';
+        btnCancerGroupElement.textContent = 'Hủy';
+        btnCreateGroupElement.value = 'Tạo nhóm';
+        //slide
+        titleSliderElement.innerHTML = 'Chào mừng đến với <span style="font-weight: 500;">ChatApp!</span>';
+        introSliderElement.textContent = 'Khám phá ứng dụng trò chuyện trực tuyến với mọi người, kết bạn, giao lưu mọi nơi mọi lúc.';
+        titleSlide1Element.textContent = 'Giao diện trực quan';
+        contentSlide1Element.textContent = 'Ứng dụng có giao diện trực quan, rất dễ sử dụng';
+        titleSlide2Element.textContent = 'Trò chuyện thời gian thực';
+        contentSlide2Element.textContent = 'Trò chuyện trực tuyến, phản hồi tức thời';
+        titleSlide3Element.textContent = 'Gửi file nhanh chóng';
+        contentSlide3Element.textContent = 'Gửi file nặng, bất kì file nào, bất cứ lúc nào';
+        //friend
+        inputSearchFriendElement.placeholder = 'Tìm kiếm';
+        titleFriendElement.innerHTML = titleFriendElement.innerHTML.replaceAll(
+            'Request list',
+            'Danh sách kết bạn'
+        );
+        titleFriendElement.innerHTML = titleFriendElement.innerHTML.replaceAll(
+            'Group list',
+            'Danh sách nhóm'
+        );
+        titleFriendElement.innerHTML = titleFriendElement.innerHTML.replaceAll(
+            'Friend list',
+            'Danh sách bạn bè'
+        );
+        title2FriendElement.textContent = 'Tìm kiếm';
+        resultSearchFriendElement.innerHTML = resultSearchFriendElement.innerHTML.replaceAll(
+            'Request',
+            'Kết bạn'
+        );
+        resultSearchFriendElement.innerHTML = resultSearchFriendElement.innerHTML.replaceAll(
+            'Cancer friend',
+            'Hủy kết bạn'
+        );
+        resultSearchFriendElement.innerHTML = resultSearchFriendElement.innerHTML.replaceAll(
+            'Accept',
+            'Chấp nhận'
+        );
+        resultSearchFriendElement.innerHTML = resultSearchFriendElement.innerHTML.replaceAll(
+            'Friend',
+            'Bạn bè'
+        );
+        resultSearchFriendElement.innerHTML = resultSearchFriendElement.innerHTML.replaceAll(
+            'Cancer request',
+            'Hủy lời mời'
+        );
+        resultSearch2FriendElement.innerHTML = resultSearch2FriendElement.innerHTML.replaceAll(
+            'Friend',
+            'Bạn bè'
+        );
+        resultSearch2FriendElement.innerHTML = resultSearch2FriendElement.innerHTML.replaceAll(
+            'Send',
+            'Nhắn tin'
+        );
+    }
+}
+function initTheme(){
+    let type = settingConfig.theme;
+    const dashboardElement = document.querySelector('.dashboard');
+    const h2DashBoardElement = document.querySelectorAll('.links h2');
+    const aLinkDastBoardElement = document.querySelectorAll('.links a');
+    const h3DashBoardElement = document.querySelector('.dashboard h3');
+    const mainElement = document.querySelector('main');
+    const styleElement = document.querySelector('style');
+
+    if(type == 'light'){
+        dashboardElement.style = '';
+        h2DashBoardElement.forEach((e) => {
+            e.style = '';
+        });
+        aLinkDastBoardElement.forEach((e) => {
+            e.style = '';
+        });
+        h3DashBoardElement.style = '';
+        mainElement.style = '';
+        styleElement.textContent = '';
+    }
+    if(type == 'dark'){
+        dashboardElement.style = 'background-color: rgb(0 0 0);';
+        h2DashBoardElement.forEach((e) => {
+            e.style = 'color: white;';
+        });
+        aLinkDastBoardElement.forEach((e) => {
+            e.style = 'color: white;';
+        });
+        h3DashBoardElement.style = 'color: white;';
+        mainElement.style = 'background: linear-gradient(to right top, #000000, #6cdbeb);';
+        styleElement.textContent = `
+        .chat-area__main .area-send .area-send__input > input::placeholder {
+            color: white;
+            opacity: 0.5;
+          }
+        `;
+    }
+}
+initLanguage();
+initTheme();

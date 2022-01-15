@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION['idUser'])){
-        header('location: chat.php');
+        header('location: index.php');
     }
     else{
         require_once('./backend/mysql_config.php');

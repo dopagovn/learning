@@ -29,7 +29,7 @@
                 }
         }
     }
-
+    require_once('setting.php');
 ?>
 
 <?php 
