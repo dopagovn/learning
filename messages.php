@@ -371,4 +371,43 @@
         excuteQuery($query);
         echo 'send icon';
     }
+    if(isset($_POST['createConversation'])){
+        require_once('backend/mysql_config.php');
+        $idFriend = $_POST['createConversation'];
+        $query = "SELECT Conversation_Id FROM participatants WHERE (Users_Id = {$_SESSION['idUser']} OR Users_Id = {$idFriend}) GROUP BY Conversation_Id HAVING COUNT(Conversation_Id) > 1";
+        $idConversations = getDataByQuery($query);
+        $existConversation = false;
+        // check
+        foreach($idConversations as $idConversation){
+            $query = "SELECT * FROM participatants WHERE Conversation_Id = {$idConversation['Conversation_Id']} GROUP BY Conversation_Id HAVING COUNT(Conversation_Id) = 2";
+            $amountRow = count(getDataByQuery($query));
+            if($amountRow > 0){
+                $existConversation = true;
+                $idExistConversation = $idConversation['Conversation_Id'];
+                break;
+            }
+        }
+        if($existConversation){
+            echo "{
+                \"type\" : \"exist\",
+                \"idConversation\" : \"{$idExistConversation}\"
+            }";
+        }
+        else{
+            $query = "INSERT INTO conversation(Title, Creator_Id, Create_at, Update_at, Delete_at) VALUES (NULL, {$_SESSION['idUser']}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL)";
+            excuteQuery($query);
+
+            $query = "SELECT MAX(id) as max FROM conversation";
+            $idConversation = getDataByQuery($query)[0]['max'];
+            
+            $query = "
+                INSERT INTO participatants(Conversation_Id, Users_Id) VALUES ({$idConversation}, {$_SESSION['idUser']});
+                INSERT INTO participatants(Conversation_Id, Users_Id) VALUES ({$idConversation}, {$idFriend});
+            ";
+            excuteMutilQuery($query);
+            echo "{
+                \"type\" : \"not exist\"
+            }";
+        }
+    }
 ?>

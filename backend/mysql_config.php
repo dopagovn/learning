@@ -172,6 +172,11 @@
         $result = mysqli_query($connect ,$query);
         mysqli_close($connect);
     }
+    function excuteMutilQuery($query){
+        $connect = mysqli_connect(HOSTNAME, USER, PASS, DB);
+        $result = mysqli_multi_query($connect ,$query);
+        mysqli_close($connect);
+    }
     function getAvatarById($idUser){
         $avatarUserDir = 'backend/avatar/' . $idUser;
         if(file_exists($avatarUserDir . '.png')){
@@ -212,7 +217,9 @@
         $query   = "
                     INSERT INTO `relations` (`from`, `to` , `status`) VALUES
                     (1, 2, 'P'),
-                    (3, 1, 'P')
+                    (3, 1, 'P'),
+                    (5, 2, 'F'),
+                    (5, 4, 'F')
                     ";
         mysqli_query($connect, $query);
         mysqli_close($connect);

@@ -527,10 +527,91 @@ inputSearchFriendElement.addEventListener('input' ,() => {
     });
 });
 
-// friend area
+// search friend to chat
+const searchInputElement = document.querySelector('.list-conversation .search-bar > input');
+const btnCloseSearchELement = document.querySelector('.list-conversation .search-bar > .close-search');
+const conversationTitleElement = document.querySelector('.list-conversation .conversations .conversations__title');
 
-const friendElement = document.querySelector('#Friends');
-        
+searchInputElement.addEventListener('focus', () => {
+    const conversationMainElement = document.querySelector('.list-conversation .conversations .conversations__main');
+    const resultMainElement = document.querySelector('.list-conversation .search-bar__result');
+
+    conversationMainElement.style = 'display: none;';
+    resultMainElement.style = 'display: flex;';
+    btnGroupShowElement.style = 'display: none';
+    btnCloseSearchELement.style = 'display: flex';
+    conversationTitleElement.innerHTML = '<span>Bạn bè<i class="fas fa-chevron-down" style="margin-left: 5px;"></i></span>';
+    searchFriendToChat();  
+});
+function searchFriendToChat(){
+    let keyword = searchInputElement.value;
+    let ajax = new XMLHttpRequest();
+    ajax.open('GET', `friends.php?search=true&keyword=${keyword}`);
+    ajax.onload = () => {
+        let result = JSON.parse(ajax.responseText);
+        let html = '';
+        result.forEach((friend) => {
+            html += `
+                <div class="result">
+                    <img class="result__avatar" src="${friend.avatar}">
+                    <div class="result__name">
+                        <p class="name">${friend.LastName + ' ' + friend.FirstName}</p>
+                        <p class="des">Bạn bè</p>
+                    </div>
+                    <button id="${friend.id}" type="button">Nhắn tin</button>
+                </div>
+            `;
+        });
+        const resultMainElement = document.querySelector('.list-conversation .search-bar__result');
+        resultMainElement.innerHTML = html;
+        // init button
+        const btnCreateConversationElements = document.querySelectorAll('.list-conversation .search-bar__result > .result > button');
+        btnCreateConversationElements.forEach((e) => {
+            e.addEventListener('click', () => {
+                let idFriend = e.id;
+                ajax.open('POST', 'messages.php');
+                ajax.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+                ajax.onload = () => {
+                    // reload conversation
+                    btnCloseSearchELement.click();
+                    let result = JSON.parse(ajax.responseText);
+                    if(result.type == 'exist'){
+                        let idConversationNeedChoice = result.idConversation;
+                        conversationElements.forEach((e) => {
+                            let idConversation = e.querySelector("input[name='idConversation']").value;
+                            if(idConversation == idConversationNeedChoice){
+                                e.click();
+                            }
+                        });
+                    }
+                    else if(result.type == 'not exist'){
+                        document.location = 'chat.php';
+                    }
+                }
+                ajax.send('createConversation=' + idFriend);
+            });
+        });
+    }
+    ajax.send();
+}
+searchInputElement.addEventListener('input', () => {
+    // send ajax 
+    searchFriendToChat();
+});
+btnCloseSearchELement.addEventListener('click', () => {
+    const conversationMainElement = document.querySelector('.list-conversation .conversations .conversations__main');
+    const resultMainElement = document.querySelector('.list-conversation .search-bar__result');
+
+    conversationMainElement.style = 'display: flex;';
+    resultMainElement.style = 'display: none;';
+    btnGroupShowElement.style = 'display: flex';
+    btnCloseSearchELement.style = 'display: none';
+    conversationTitleElement.innerHTML = '<span>Tất cả tin nhắn<i class="fas fa-chevron-down" style="margin-left: 5px;"></i></span>';
+    searchInputElement.value = '';
+});
+
+// friend area
+const friendElement = document.querySelector('#Friends');     
 
 window.addEventListener('load', () => {
     friendElement.style.maxHeight = window.innerHeight - (window.innerHeight * 0.09) + 'px';

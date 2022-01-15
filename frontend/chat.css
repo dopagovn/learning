@@ -182,6 +182,21 @@ p {
   transition: all 0.7s;
   color: white;
 }
+.list-conversation .search-bar > .close-search{
+  font-size: 13px;
+  font-weight: 500;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  padding: 2px 5px;
+}
+.list-conversation .search-bar > .close-search:hover{
+  background-color: #34b19a;
+  transition: all 0.2s;
+  color: white;
+  cursor: pointer;
+}
 .list-conversation .search-bar > input::placeholder {
   opacity: 0.7;
 }
@@ -313,6 +328,53 @@ i {
   opacity: 0.8;
   transform: translateY(4px);
   text-align: right;
+}
+.list-conversation .search-bar__result{
+  display: none;
+  flex-direction: column;
+  z-index: 1000 !important;
+  opacity: 1;
+}
+.list-conversation .search-bar__result > .result{
+  display: flex;
+  align-items: center;
+  padding: 7px 10px;
+}
+.list-conversation .search-bar__result > .result:hover{
+  background-image: linear-gradient(to right top, #70e7d1, #6cdbeb);
+}
+.list-conversation  .search-bar__result > .result > .result__avatar{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.list-conversation .search-bar__result > .result > .result__name{
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+  flex: 1;
+}
+.list-conversation .search-bar__result > .result > .result__name > .name{
+  font-weight: 500;
+  font-size: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.list-conversation .search-bar__result > .result > .result__name > .des{
+  font-size: 12.5px;
+  opacity: .7;
+}
+.list-conversation .search-bar__result > .result > button{
+  margin-right: 10px;
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.list-conversation .search-bar__result > .result > button:hover{
+  background-color: #34b19a;
+  transition: all 0.2s;
+  color: white;
 }
 
 .chat-area {

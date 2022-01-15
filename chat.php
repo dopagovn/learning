@@ -82,7 +82,8 @@
                 <div class="list-conversation">
                     <div class="search-bar">
                         <i class="fas fa-search"></i>
-                        <input placeholder="Tìm kiếm">
+                        <input placeholder="Bạn bè">
+                        <p class="close-search" title="Đóng tìm kiếm">Đóng</p>
                         <i class="fas fa-users group-menu" title="Tạo nhóm chat"></i>
                     </div>
                     <div class="conversations">
@@ -164,6 +165,7 @@
                                 ?>
                         </div>
                     </div>
+                    <div class="search-bar__result"></div>
                 </div>
                 <div class="chat-area">
                     <div class="chat-area__intro">
